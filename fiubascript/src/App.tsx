@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Register } from './register/Register';
 import { Home } from './home/Home';
 import { Landing } from './landing/Landing';
-
+import { GameScreen } from './screens/GameScreen';
 
 function App() {
   return (
@@ -16,10 +16,9 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-
+        <Route path="/game" element={<GameScreen />} />
       </Routes>
-    </Router>
-    
+    </Router> 
   );
 }
 

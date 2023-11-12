@@ -1,7 +1,20 @@
+import { UserNotLoggedInPage } from "../auth/UserNotLoggedInPage";
+import { isUserLoggedIn } from "../auth/authFunctions"
+import { Navbar } from "../navbar/Navbar";
+
 export const Home = () => {
+    const userLoggedIn = isUserLoggedIn();
+    if (!userLoggedIn) {
+        window.location.href = '/login'
+    }
+
     return(
-        <div className="container">
-            logged in home
-        </div>
+        userLoggedIn ?
+
+        <Navbar/>
+
+        // pagina de home
+        :
+        <UserNotLoggedInPage />
     )
 }

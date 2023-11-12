@@ -1,7 +1,15 @@
+import { UserNotLoggedInPage } from "../auth/UserNotLoggedInPage";
+import { isUserLoggedIn } from "../auth/authFunctions"
+import { Navbar } from "../navbar/Navbar";
+
 export const Landing = () => {
+    const userLoggedIn = isUserLoggedIn();
+
     return(
-        <div className="container">
-            landing
-        </div>
+        userLoggedIn ?
+
+        <Navbar/>
+        :
+        <UserNotLoggedInPage />
     )
 }

@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import { ReactNode } from 'react';
-import { COLORS } from '../constants/constants';
+import { COLORS } from '../../constants/constants';
 import './HomeButton.css';
 
 type HomeButtonProps = {

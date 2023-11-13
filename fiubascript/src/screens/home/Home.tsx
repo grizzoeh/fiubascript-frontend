@@ -1,9 +1,9 @@
 import React from 'react'
-import { BackgroundContainer } from '../components/BackgroundContainer'
-import { HomeButton } from '../components/HomeButton'
-import { UserNotLoggedInPage } from "../auth/UserNotLoggedInPage";
-import { isUserLoggedIn } from "../auth/authFunctions"
-import { Navbar } from "../navbar/Navbar";
+import { BackgroundContainer } from '../../components/BackgroundContainer/BackgroundContainer'
+import { HomeButton } from '../../components/HomeButton/HomeButton'
+import { UserNotLoggedInPage } from "../../auth/UserNotLoggedInPage";
+import { isUserLoggedIn } from "../../auth/authFunctions"
+import { Navbar } from "../../components/navbar/Navbar";
 import triviaTitle from '../assets/TrivIA.png';
 import Jugar from '../assets/Jugar.png';
 import Tienda from '../assets/Tienda.png';

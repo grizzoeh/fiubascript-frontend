@@ -1,6 +1,6 @@
 import React from 'react'
-import { BackgroundContainer } from '../components/BackgroundContainer'
-import { AnswerButton } from '../components/AnswerButton'
+import { BackgroundContainer } from '../../components/BackgroundContainer/BackgroundContainer'
+import { AnswerButton } from '../../components/AnswerButton/AnswerButton'
 
 export const GameScreen = () => {
   return (

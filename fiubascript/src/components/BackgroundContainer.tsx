@@ -4,7 +4,7 @@ import background from '../assets/backgroundPadded.png';
 import { COLORS } from '../constants/constants';
 
 type BackgroundContainerProps = {
-  children: ReactElement | ReactElement[];
+  children: ReactNode;
 };
 
 export const BackgroundContainer = ({ children } : BackgroundContainerProps) => {

@@ -3,14 +3,13 @@ import { useState } from "react";
 export const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [token, setToken] = useState("");
 
     // const history = useHistory();
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try{
-            const response = await fetch("http://localhost:8080/auth/login", {
+            const response = await fetch("https://fiubascript-backend.onrender.com/auth/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -19,9 +18,14 @@ export const Login = () => {
             });
             const data = await response.json();
             if (response.ok) {
-                setToken(data.token);
-                localStorage.setItem("token", data.token);
-                window.location.href = '/home';
+                console.log("data is",data);
+                localStorage.setItem("token", data.sessionToken);
+                localStorage.setItem("userId", data._id);
+                localStorage.setItem("userName", data.name);
+                localStorage.setItem("userLastName", data.lastName);
+                localStorage.setItem("userEmail", data.email);
+                window.location.href = '/';
+
             }
             else {
                 // Login failed, display error message

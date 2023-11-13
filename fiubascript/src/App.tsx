@@ -1,6 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
 import {BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Login } from './login/Login';
@@ -8,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Register } from './register/Register';
 import { Home } from './home/Home';
 import { Landing } from './landing/Landing';
-
+import { GameScreen } from './screens/GameScreen';
 
 function App() {
   return (
@@ -18,10 +16,9 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-
+        <Route path="/game" element={<GameScreen />} />
       </Routes>
-    </Router>
-    
+    </Router> 
   );
 }
 

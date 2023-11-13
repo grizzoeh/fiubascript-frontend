@@ -4,9 +4,9 @@ import { HomeButton } from '../../components/HomeButton/HomeButton'
 import { UserNotLoggedInPage } from "../../auth/UserNotLoggedInPage";
 import { isUserLoggedIn } from "../../auth/authFunctions"
 import { Navbar } from "../../components/navbar/Navbar";
-import triviaTitle from '../assets/TrivIA.png';
-import Jugar from '../assets/Jugar.png';
-import Tienda from '../assets/Tienda.png';
+import triviaTitle from '../../assets/TrivIA.png';
+import Jugar from '../../assets/Jugar.png';
+import Tienda from '../../assets/Tienda.png';
 import './Home.css';
 
 export const Home = () => {

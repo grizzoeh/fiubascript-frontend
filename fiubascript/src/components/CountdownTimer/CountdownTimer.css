@@ -1,0 +1,31 @@
+.countdownTimer-container{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 50%;
+  transform: rotate(-90deg);
+}
+
+.countdownTimer-image{
+  /* w-20 h-20 */
+  height: 80px;
+  width: 80px;
+}
+
+.countdownTimer-circle-background{
+  color: grey;
+}
+
+.countdownTimer-time{
+  position: absolute;
+  rotate: 90deg;
+}
+
+.countdownTimer-primary{
+  color: var(--primary-light);
+}
+
+.countdownTimer-secondary{
+  color: var(--error);
+}

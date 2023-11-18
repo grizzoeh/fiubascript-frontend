@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const Register = () => {
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
@@ -37,7 +39,7 @@ export const Register = () => {
         });
         if (response.ok) {
             // Registration successful, redirect to login page
-            window.location.href = '/home';
+            navigate('/login');
         } else {
             // Registration failed, display error message
             const data = await response.json();

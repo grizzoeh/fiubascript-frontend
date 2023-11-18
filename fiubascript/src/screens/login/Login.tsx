@@ -1,8 +1,12 @@
 import { useState } from "react";
+import useUser from "../../hooks/useUser";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const { userInfo, setUserInfo } = useUser();
 
     // const history = useHistory();
 
@@ -17,15 +21,17 @@ export const Login = () => {
                 body: JSON.stringify({ email, password })
             });
             const data = await response.json();
+            console.log("Data: ",data);
             if (response.ok) {
-                console.log("data is",data);
-                localStorage.setItem("token", data.sessionToken);
-                localStorage.setItem("userId", data._id);
-                localStorage.setItem("userName", data.name);
-                localStorage.setItem("userLastName", data.lastName);
-                localStorage.setItem("userEmail", data.email);
-                window.location.href = '/';
+                setUserInfo({
+                    token: data.authentication.sessionToken,
+                    id: data._id,
+                    firstName: data.name,
+                    lastName: data.lastName,
+                    email: data.email
+                });
 
+                navigate("/home");
             }
             else {
                 // Login failed, display error message

@@ -13,6 +13,7 @@
     margin-right: 50px;
     margin-top: 50px;
     transition: background-color 0.3s;
+    border-width: 0px;
   }
 
   .home-button img {

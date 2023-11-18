@@ -8,15 +8,12 @@ import triviaTitle from '../../assets/TrivIA.png';
 import Jugar from '../../assets/Jugar.png';
 import Tienda from '../../assets/Tienda.png';
 import './Home.css';
+import { useNavigate } from 'react-router-dom';
 
 export const Home = () => {
-    const userLoggedIn = isUserLoggedIn();
-    if (!userLoggedIn) {
-        window.location.href = '/login'
-    }
+    const navigate = useNavigate();
 
     return(
-        userLoggedIn ?
 
         //<Navbar/>
         <BackgroundContainer>
@@ -25,12 +22,10 @@ export const Home = () => {
           </div>
           <div className="centered-content">
             <div className="button-row">
-              <HomeButton title="Jugar" imageSrc={Jugar}></HomeButton>
+              <HomeButton title="Jugar" imageSrc={Jugar} onClick={() => navigate('/game')}></HomeButton>
               <HomeButton title="Tienda" imageSrc={Tienda}></HomeButton>
             </div>
           </div>
         </BackgroundContainer>
-        :
-        <UserNotLoggedInPage />
     )
 }

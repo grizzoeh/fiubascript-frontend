@@ -6,14 +6,15 @@ import './HomeButton.css';
 type HomeButtonProps = {
   title: string; // Título del botón
   imageSrc: string; // Ruta de la imagen
+  onClick?: () => void; // Función a ejecutar al hacer click 
   //children: ReactElement;
 };
 
-export const HomeButton = ({ title, imageSrc}: HomeButtonProps) => {
+export const HomeButton = ({ title, imageSrc, onClick}: HomeButtonProps) => {
   return (
-    <div className="home-button">
+    <button className="home-button" onClick={onClick}>
       <p className="home-button-title">{title}</p>
       <img src={imageSrc} alt={title} />
-    </div>
+    </button>
   );
 };

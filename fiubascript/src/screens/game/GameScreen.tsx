@@ -4,6 +4,7 @@ import { AnswerButton } from '../../components/AnswerButton/AnswerButton'
 import { GameHeader } from '../../components/GameHeader/GameHeader'
 import './GameScreen.css'
 import { Question } from '../../components/Question/Question'
+import { Powerups } from '../../components/Powerups/Powerups'
 
 export const GameScreen = () => {
   return (
@@ -22,7 +23,7 @@ export const GameScreen = () => {
           </div>
         </div>
         <div className='gameScreen-powerups-container'>
-          PowerUps
+          <Powerups/>
         </div>
         <div className='gameScreen-buttons-container'>
           <div className='gameScreen-buttons-row'>

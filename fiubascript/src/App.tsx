@@ -7,6 +7,7 @@ import { Register } from './screens/register/Register';
 import { Home } from './screens/home/Home';
 import { Landing } from './screens/landing/Landing';
 import { GameScreen } from './screens/game/GameScreen';
+import { Tienda } from './screens/tienda/Tienda';
 import useUser from './hooks/useUser';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/home" element={<Home />} />
             <Route path="/game" element={<GameScreen />} />
+            <Route path="/tienda" element={<Tienda />} />
             <Route path="/*" element={<>Page not found :(</>} />
           </>
           :

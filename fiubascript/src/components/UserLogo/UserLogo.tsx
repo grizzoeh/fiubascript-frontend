@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import UserPhoto from '../assets/UserPhoto.png';
+import UserPhoto from '../../assets/UserPhoto.png';
 import './UserLogo.css';
 
 
@@ -7,16 +7,16 @@ export const UserLogo = () => {
   const [isDropdownVisible, setDropdownVisible] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
-  const handleClickOutside = (event: MouseEvent) => {
+  const handleClickOautside = (event: MouseEvent) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
       setDropdownVisible(false);
     }
   };
 
   useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('mousedown', handleClickOautside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOautside);
     };
   }, []);
 

@@ -1,11 +1,11 @@
 import React from 'react'
-import { BackgroundContainer } from '../components/BackgroundContainer'
-import triviaTitle from '../assets/TrivIA.png';
-import Coin from '../assets/Coin.png';
+import { BackgroundContainer } from '../../components/BackgroundContainer/BackgroundContainer'
+import triviaTitle from '../../assets/TrivIA.png';
+import Coin from '../../assets/coin.png';
 import './Tienda.css';
 
 const importImages = () => {
-    const images = require.context('../assets/skins', false, /\.(png|jpe?g|svg)$/);
+    const images = require.context('../../assets/skins', false, /\.(png|jpe?g|svg)$/);
     return images.keys().map(images) as string[]; // Realiza una conversión de tipo a string[]
   };
 

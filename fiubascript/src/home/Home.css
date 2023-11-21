@@ -16,4 +16,16 @@
     align-items: center;
     justify-content: center;
   }
+
+  .user-image{
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 10px;
+      width: 60px;
+  }
+
+  .title-trivia{
+    width: 250px;
+  }
   

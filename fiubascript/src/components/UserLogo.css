@@ -1,0 +1,21 @@
+.user-image{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    width: 60px;
+}
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%; /* Ajusta según sea necesario */
+    left: 0;
+    background-color: #fff; /* Color de fondo del menú */
+    border: 1px solid #ccc; /* Borde del menú */
+    padding: 10px;
+    z-index: 1; /* Asegura que el menú esté encima de otros elementos */
+  }
+
+  .user-logo-container {
+    display: inline-block;
+  }

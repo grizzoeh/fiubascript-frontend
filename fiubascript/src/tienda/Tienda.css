@@ -1,0 +1,66 @@
+.title{
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 10px; 
+        width: 150px;
+}
+
+.image-gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px; /* Reducir el espacio entre las celdas */
+    max-height: 500px;
+    overflow-y: auto;
+    border-radius: 23px;
+    background: rgba(200, 233, 240, 0.13);
+    width: 968px;
+    height: 723px;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    margin-top: 50px;
+    position: relative; 
+  }
+  
+  .skins {
+    width: 140px;
+    height: 223px;
+    margin: 10px;
+  }
+
+  .image-gallery-container::-webkit-scrollbar {
+    width: 12px;
+    border-radius: 0px 22px 22px 0px;
+    background-color: transparent;
+  }
+  
+  .image-gallery-container::-webkit-scrollbar-thumb {
+    background: #C8E9F0; /* (la parte móvil) */
+    border-radius: 18px; 
+  }
+  
+  .image-gallery-container::-webkit-scrollbar-track {
+    background-color: transparent; /* (la parte fija) */
+  }
+
+  .image-with-coin{
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+  }
+
+  .coin{
+    width: 36px;
+    height: 36px;
+  }
+
+  .tienda-title{
+    width: 382px;
+    color: #37CAEC;
+    text-align: center;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 162.523%;
+  }

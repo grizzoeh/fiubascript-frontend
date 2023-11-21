@@ -1,8 +1,8 @@
 .home-button {
     border-radius: 23px;
     background: #37CAEC;
-    width: 272px;
-    height: 175px;
+    width: 200px;
+    height: 160px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,14 +16,14 @@
   }
 
   .home-button img {
-    width: 70px;
-    height: 73px;
+    width: 60px;
+    height: 63px;
   }
 
   .home-button-title{
     color: #FFF;
     text-align: center;
-    font-size: 38px;
+    font-size: 30px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;

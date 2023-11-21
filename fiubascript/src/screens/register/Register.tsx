@@ -56,7 +56,7 @@ export const Register = () => {
 
     return (
         <BackgroundContainer>
-        <div className="centered-image mb-3">
+        <div className="centered-image mb-3" style={{marginTop: '1rem'}}>
             <img src={triviaTitle} alt="TrivIA Title" />
         </div>
         <div className="login template d-flex justify-content-center align-items-center">
@@ -89,7 +89,7 @@ export const Register = () => {
                 </div>
 
                 <div className="mb-3">
-                <a href="/login" className="btn btn-link">¿Ya tenés cuenta? Ingresá acá</a>     
+                <a href="/login" className="btn btn-link text-white">¿Ya tenés cuenta? Ingresá acá</a>     
                 </div>       
                 </form>
             </div>

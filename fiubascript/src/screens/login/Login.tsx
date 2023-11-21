@@ -63,9 +63,12 @@ export const Login = () => {
                     <label htmlFor="password" className="form-label text-primary-lighter">Contraseña</label>
                     <input type="password" className="form-control rounded-pill" id="password" placeholder="Contraseña" onChange={e => setPassword(e.target.value)} />
                 </div>
-                <div className="align-items-center">
+                <div className="align-items-center mb-3">
                 <button type="submit" className="btn btn-primary text-white align-center bg-primary-light">Ingresar</button>
                 </div>
+                <div className="mb-3">
+                <a href="/register" className="btn btn-link text-white">¿No tenés cuenta? Ingresá acá</a>     
+                </div>    
             </form>
             </div>
         </div>

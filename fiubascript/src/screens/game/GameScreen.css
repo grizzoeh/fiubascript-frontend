@@ -9,14 +9,16 @@
 }
 
 .gameScreen-powerups-container{
-  background-color: red;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  background-color: pink;
 }
 
 .gameScreen-question-background{
   border-radius: 1rem;
-  min-height: 50vh;
+  min-height: 40vh;
   width: 70%;
-  padding: 1rem;
+  padding: 4rem;
   background-color: #C8E9F033;
 }
 

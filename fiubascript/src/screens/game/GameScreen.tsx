@@ -12,7 +12,13 @@ export const GameScreen = () => {
       <div className='gameScreen-container'>
         <div className='gameScreen-question-container'>
           <div className='gameScreen-question-background'>
-            <Question/>
+            <Question
+              question={'¿Cuál de las siguientes razas es propia de los perros?'}
+              answerA={'Siamés'}
+              answerB={'Falabella'}
+              answerC={'Collie'}
+              answerD={'Braford'}
+            />
           </div>
         </div>
         <div className='gameScreen-powerups-container'>

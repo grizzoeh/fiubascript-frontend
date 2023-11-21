@@ -1,0 +1,31 @@
+.gameScreen-container{
+  
+}
+
+.gameScreen-question-container{
+  /* background-color: pink; */
+  display: flex;
+  justify-content: center;
+}
+
+.gameScreen-powerups-container{
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.gameScreen-question-background{
+  border-radius: 1rem;
+  min-height: 40vh;
+  width: 70%;
+  padding: 4rem;
+  background-color: #C8E9F033;
+}
+
+.gameScreen-buttons-container{
+
+}
+
+.gameScreen-buttons-row{
+  display: flex;
+  justify-content: center;
+}

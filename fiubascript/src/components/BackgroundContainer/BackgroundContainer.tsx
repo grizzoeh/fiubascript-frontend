@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { ReactNode } from 'react';
-import background from '../assets/backgroundPadded.png';
-import { COLORS } from '../constants/constants';
+import background from '../../assets/backgroundPadded.png';
+import { COLORS } from '../../constants/constants';
 
 type BackgroundContainerProps = {
   children: ReactNode;

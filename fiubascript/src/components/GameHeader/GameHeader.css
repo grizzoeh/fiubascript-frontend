@@ -1,0 +1,20 @@
+.gameHeader-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gameHeader-logo{
+  height: 3rem;
+}
+
+.gameHeader-coin{
+  height: 1.5rem;
+  margin-right: 1rem;
+}
+
+.gameHeader-coin-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

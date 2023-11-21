@@ -49,10 +49,10 @@ export const Login = () => {
 
     return (
         <BackgroundContainer>
-               <div className="centered-image mb-5">
+        <div className="centered-image mb-5">
             <img src={triviaTitle} alt="TrivIA Title" />
-          </div>
-        <div className="login template d-flex justify-content-center align-items-center  ">
+        </div>
+        <div className="login template d-flex justify-content-center align-items-center">
             <div className="40-w">
             <form onSubmit={handleSubmit}>
                 <div className="mb-3 mt-2">

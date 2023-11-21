@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { BackgroundContainer } from "../../components/BackgroundContainer/BackgroundContainer";
+import triviaTitle from '../../assets/TrivIA.png';
 
 export const Register = () => {
     const navigate = useNavigate();
@@ -8,7 +10,7 @@ export const Register = () => {
     const [name, setName] = useState("");
     const [lastName, setLastName] = useState("");
     const [repeatPassword, setRepeatPassword] = useState('');
-    const [passwordsMatch, setPasswordsMatch] = useState(false);
+    const [passwordsMatch, setPasswordsMatch] = useState(true);
 
 
     function handlePasswordChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -53,36 +55,45 @@ export const Register = () => {
 }
 
     return (
-        
-        <div className="login template d-flex justify-content-center align-items-center 100-w vh-100 bg-primary">
-            <div className="40-w p-5 bg-white rounded-3">
+        <BackgroundContainer>
+        <div className="centered-image mb-3">
+            <img src={triviaTitle} alt="TrivIA Title" />
+        </div>
+        <div className="login template d-flex justify-content-center align-items-center">
+            <div className="40-w">
             <form onSubmit={handleSubmit}>
-                <h3>Register</h3>
                 <div className="mb-3">
-                    <label htmlFor="password" className="form-label">Name</label>
-                    <input type="text" className="form-control" id="name" placeholder="Name" onChange={e => setName(e.target.value)} />
+                    <label htmlFor="password" className="form-label text-primary-lighter">Nombre</label>
+                    <input type="text" className="form-control rounded-pill" id="name" placeholder="Nombre" onChange={e => setName(e.target.value)} />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="password" className="form-label">Last Name</label>
-                    <input type="text" className="form-control" id="lastName" placeholder="Last Name" onChange={e => setLastName(e.target.value)} />
+                    <label htmlFor="password" className="form-label text-primary-lighter">Apellido</label>
+                    <input type="text" className="form-control rounded-pill" id="lastName" placeholder="Apellido" onChange={e => setLastName(e.target.value)} />
                 </div>
                 <div className="mb-3 mt-3">
-                    <label htmlFor="username" className="form-label">Email</label>
-                    <input type="email" className="form-control" id="email" placeholder="Enter email" onChange={e => setEmail(e.target.value)} />
+                    <label htmlFor="username" className="form-label text-primary-lighter">Email</label>
+                    <input type="email" className="form-control rounded-pill" id="email" placeholder="Enter email" onChange={e => setEmail(e.target.value)} />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="password" className="form-label">Password</label>
-                    <input type="password" className="form-control" id="password" placeholder="Password" onChange={handlePasswordChange} />
+                    <label htmlFor="password" className="form-label text-primary-lighter">Contraseña</label>
+                    <input type="password" className="form-control rounded-pill" id="password" placeholder="Contraseña" onChange={handlePasswordChange} />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="repeat-password" className="form-label">Repeat Password</label>
-                    <input type="password" className="form-control" id="repeat-password" placeholder="Repeat Password" onChange={handleRepeatPasswordChange} />
-                    {passwordsMatch ? null : <div className="text-danger">Passwords do not match</div>}
+                    <label htmlFor="repeat-password" className="form-label text-primary-lighter">Repetir contraseña</label>
+                    <input type="password" className="form-control rounded-pill" id="repeat-password" placeholder="Repetir contraseña" onChange={handleRepeatPasswordChange} />
+                    {passwordsMatch ? null : <div className="text-danger">Las contraseñas no coinciden</div>}
                 </div>
 
-                <button type="submit" className="btn btn-primary">Register</button>
-            </form>
+                <div className="mb-3">  
+                <button type="submit" className="btn btn-primary text-white align-center bg-primary-light">Registrarse</button>
+                </div>
+
+                <div className="mb-3">
+                <a href="/login" className="btn btn-link">¿Ya tenés cuenta? Ingresá acá</a>     
+                </div>       
+                </form>
             </div>
         </div>
+        </BackgroundContainer>
     );
 }

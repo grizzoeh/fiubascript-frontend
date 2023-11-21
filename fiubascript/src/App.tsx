@@ -18,7 +18,7 @@ function App() {
           userInfo.token
           ?
           <>
-            <Route path="/" element={<Navigate to="/login" />} />
+            <Route path="/" element={<Landing />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/home" element={<Home />} />
@@ -27,7 +27,7 @@ function App() {
           </>
           :
           <>
-            <Route path="/" element={<Navigate to="/login" />} />
+            <Route path="/" element={<Landing />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/*" element={<>Page not found :(</>} />

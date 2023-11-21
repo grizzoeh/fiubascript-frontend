@@ -1,15 +1,28 @@
-import { UserNotLoggedInPage } from "../../auth/UserNotLoggedInPage";
-import { isUserLoggedIn } from "../../auth/authFunctions"
-import { Navbar } from "../../components/navbar/Navbar";
+import React from 'react'
+import { BackgroundContainer } from '../../components/BackgroundContainer/BackgroundContainer'
+import { HomeButton } from '../../components/HomeButton/HomeButton'
+import triviaTitle from '../../assets/TrivIA.png';
+import Ingresar from '../../assets/Ingresar.png';
+import Registrarse from '../../assets/Registrarse.png';
+import './Home.css';
+import { useNavigate } from 'react-router-dom';
 
 export const Landing = () => {
-    const userLoggedIn = isUserLoggedIn();
+    const navigate = useNavigate();
 
     return(
-        userLoggedIn ?
 
-        <Navbar/>
-        :
-        <UserNotLoggedInPage />
+        //<Navbar/>
+        <BackgroundContainer>
+          <div className="centered-image">
+            <img src={triviaTitle} alt="TrivIA Title" />
+          </div>
+          <div className="centered-content">
+            <div className="button-row">
+              <HomeButton title="Ingresar" imageSrc={Ingresar} onClick={() => navigate('/login')}></HomeButton>
+              <HomeButton title="Registrarse" imageSrc={Registrarse} onClick={() => navigate('/register')}></HomeButton>
+            </div>
+          </div>
+        </BackgroundContainer>
     )
 }

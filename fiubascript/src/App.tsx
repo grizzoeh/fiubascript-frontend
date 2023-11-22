@@ -8,6 +8,7 @@ import { Home } from './screens/home/Home';
 import { Landing } from './screens/landing/Landing';
 import { GameScreen } from './screens/game/GameScreen';
 import { Tienda } from './screens/tienda/Tienda';
+import { PurchaseContainer } from './components/PurchaseContainer/PurchaseContainer';
 import useUser from './hooks/useUser';
 
 function App() {

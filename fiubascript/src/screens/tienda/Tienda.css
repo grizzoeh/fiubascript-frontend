@@ -1,66 +1,99 @@
-.title{
-        position: absolute;
-        top: 0;
-        left: 0;
-        margin: 10px; 
-        width: 150px;
+.image-gallery-container {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(200px, 1fr)); /* Cambiamos a 3 columnas */
+  gap: 10px;
+  max-height: 500px;
+  overflow-y: auto;
+  border-radius: 23px;
+  background: rgba(200, 233, 240, 0.13);
+  width: 750px;
+  margin: auto;
+  margin-top: 50px;
+  grid-template-rows: auto auto; /* Dos filas en la cuadrícula */
 }
 
-.image-gallery-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 10px; /* Reducir el espacio entre las celdas */
-    max-height: 500px;
-    overflow-y: auto;
-    border-radius: 23px;
-    background: rgba(200, 233, 240, 0.13);
-    width: 968px;
-    height: 723px;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-    margin-top: 50px;
-    position: relative; 
-  }
-  
-  .skins {
-    width: 140px;
-    height: 223px;
-    margin: 10px;
-  }
+.title-container {
+  grid-row: 1;
+  grid-column: span 3; /* Asignamos el título a las 3 columnas */
+  text-align: center;
+}
 
-  .image-gallery-container::-webkit-scrollbar {
-    width: 12px;
-    border-radius: 0px 22px 22px 0px;
-    background-color: transparent;
-  }
-  
-  .image-gallery-container::-webkit-scrollbar-thumb {
-    background: #C8E9F0; /* (la parte móvil) */
-    border-radius: 18px; 
-  }
-  
-  .image-gallery-container::-webkit-scrollbar-track {
-    background-color: transparent; /* (la parte fija) */
-  }
+.title {
+  color: #37CAEC;
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
 
-  .image-with-coin{
-    display: flex;
-  flex-direction: column;
+.skins {
+  width: 100px;
+  height: 183px;
+  margin: 10px;
+}
+
+
+.skins:hover {
+  transform: scale(1.1); /* Ajusta el valor según sea necesario para el zoom al hacer hover */
+}
+
+.image-gallery-container::-webkit-scrollbar {
+  width: 12px;
+  border-radius: 0px 22px 22px 0px;
+  background-color: transparent;
+}
+
+.image-gallery-container::-webkit-scrollbar-thumb {
+  background: #C8E9F0; /* (la parte móvil) */
+  border-radius: 18px; 
+}
+
+.image-gallery-container::-webkit-scrollbar-track {
+  background-color: transparent; /* (la parte fija) */
+}
+
+.image-with-coin{
+  display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+.coin{
+  width: 36px;
+  height: 36px;
+}
+
+.tienda-title{
+  width: 382px;
+  color: #37CAEC;
+  text-align: center;
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 162.523%;
+}
+
+
+.title-trivia{
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 10px; 
+  width: 150px;
+}
+
+.coin-and-number {
+  display: flex;
   align-items: center;
-  }
+}
 
-  .coin{
-    width: 36px;
-    height: 36px;
-  }
-
-  .tienda-title{
-    width: 382px;
-    color: #37CAEC;
-    text-align: center;
-    font-size: 64px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 162.523%;
-  }
+.random-number{
+  margin-left: 15px;
+  margin-top: 15px;
+  color: #C8E9F0;
+  text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+}

@@ -1,4 +1,4 @@
-.container {
+.container-block {
     border-radius: 23px;
     background: #37CAEC;
     width: 455px;
@@ -19,9 +19,9 @@
   }
 
 .close-button {
-    position: absolute;
-    top: 10px; /* Ajusta la posición vertical según sea necesario */
-    right: 50px; /* Ajusta la posición horizontal según sea necesario */
+    position: fixed;
+    top: 80px; /* Ajusta la posición vertical según sea necesario */
+    right: 370px; /* Ajusta la posición horizontal según sea necesario */
     background: none;
     border: none;
     cursor: pointer;

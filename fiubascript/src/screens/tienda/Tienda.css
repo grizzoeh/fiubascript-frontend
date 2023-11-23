@@ -9,7 +9,6 @@
   background: rgba(200, 233, 240, 0.13);
   width: 750px;
   margin: auto;
-  margin-top: 50px;
   grid-template-rows: auto auto; /* Dos filas en la cuadrícula */
 }
 

@@ -4,25 +4,29 @@ import './UserLogo.css';
 
 
 export const UserLogo = () => {
-  const [isDropdownVisible, setDropdownVisible] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement | null>(null); // Añade el tipo explícito HTMLDivElement | null
 
-  const handleClickOautside = (event: MouseEvent) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-      setDropdownVisible(false);
+  const handleUserClick = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleOptionClick = (option: string) => {
+    // ... (mismo código)
+  };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+      setIsMenuOpen(false);
     }
   };
 
   useEffect(() => {
-    document.addEventListener('mousedown', handleClickOautside);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOautside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
-
-  const toggleDropdown = () => {
-    setDropdownVisible(!isDropdownVisible);
-  };
 
   return (
     <div className="user-logo-container">
@@ -30,14 +34,8 @@ export const UserLogo = () => {
         src={UserPhoto}
         alt="userImage"
         className="user-image"
-        onClick={toggleDropdown}
+        onClick={handleUserClick}
       />
-      {isDropdownVisible && (
-        <div className="dropdown-menu" ref={dropdownRef}>
-          <p>Configuración</p>
-          <p>Cerrar sesión</p>
-        </div>
-      )}
     </div>
   );
 };

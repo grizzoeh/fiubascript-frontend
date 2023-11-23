@@ -16,7 +16,7 @@ export const PurchaseContainer = ({ randomNumber, imageSrc, onClose }: PurchaseC
         <button className="close-button" onClick={onClose}>
         <img src={Cruz} alt="close" className="close-button" />
       </button>
-    <div className="container">
+    <div className="container-block">
         <p className="title-purchase">¿Desea comprar el siguiente avatar?</p>
       <img className="skins-purchase" src={imageSrc} alt="Skin" />
       <div className="grid-container">

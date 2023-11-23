@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { BackgroundContainer } from '../../components/BackgroundContainer/BackgroundContainer'
+import { Navbar } from '../../components/Navbar/Navbar'
 import { PurchaseContainer } from '../../components/PurchaseContainer/PurchaseContainer'
-import triviaTitle from '../../assets/TrivIA.png';
 import Coin from '../../assets/coin.png';
 import './Tienda.css';
 
@@ -40,7 +40,7 @@ const importImages = () => {
     
     return (
       <BackgroundContainer>
-        <img src={triviaTitle} alt="TrivIA Title" className="title-trivia" />
+        <Navbar></Navbar>
         <div className="image-gallery-container">
           <div className="title-container">
             <p className="title">Tienda</p>

@@ -1,15 +1,21 @@
+import triviaTitle from '../../assets/TrivIA.png';
+import { UserLogo } from '../UserLogo/UserLogo'
+import Coin from '../../assets/coin.png';
+import './Navbar.css';
 
 export const Navbar = () => {
 
-  const handleLogout = () => {
-    localStorage.clear();
-    window.location.href = '/login'
-  };
-
   return (
-    <nav className="bg-primary" style={{ display: 'flex', justifyContent: 'space-between' }}>
-      <div className="p-2 text-white">Logo</div>
-      <button  onClick={handleLogout} className="btn btn-link text-white">Logout</button>
+    <nav className="navbar">
+      <div className="nav-item">
+        <img src={triviaTitle} alt="TrivIA Title" className="nav-logo" />
+      </div>
+      <div className="nav-item">
+        <img src={Coin} alt="Coin" className="nav-icon" />
+      </div>
+      <div className="nav-item">
+        <UserLogo />
+      </div>
     </nav>
   );
 };

@@ -1,0 +1,20 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent; /* Cambia el color de fondo según sea necesario */
+    color: white; /* Cambia el color del texto según sea necesario */
+  }
+  
+  .nav-item {
+    margin-right: 42px; /* Ajusta el espacio entre elementos según sea necesario */
+  }
+  
+  .nav-logo {
+    margin: 10px; 
+    width: 200px;
+  }
+  
+  .nav-icon {
+    width: 42px; /* Ajusta el tamaño del icono según sea necesario */
+  }

@@ -1,25 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import './CountdownTimer.css'
+import { ANSWER_TIME, SHOW_RESULT_TIME } from '../../constants/constants'
 
 type CountdownTimerProps = {
-  onFinish: () => void
+  onFinishAnswerTime: () => void
+  onFinishShowResultTime: () => void
 }
 
-export const CountdownTimer = ({ onFinish }: CountdownTimerProps) => {
+export const CountdownTimer = ({ onFinishAnswerTime, onFinishShowResultTime }: CountdownTimerProps) => {
 
-  const [timer, settimer] = useState(20)
+  const [timer, settimer] = useState(ANSWER_TIME)
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    setTimeout(() => {
       settimer(prevTimer => prevTimer > 0 ? prevTimer - 1 : prevTimer)
       if(timer === 0){
-        onFinish()
+        onFinishAnswerTime()
+        setTimeout(() => {
+          onFinishShowResultTime()
+          settimer(ANSWER_TIME)
+        }, SHOW_RESULT_TIME*1000);
       }
     }, 1000);
-    return () => {
-      clearInterval(interval);
-    };
-  }, [])
+  }, [timer])
   
 
   return (

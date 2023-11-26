@@ -6,3 +6,5 @@ export const COLORS = {
   success: '#46A824',
   error: '#A61A1A',
 }
+ export const ANSWER_TIME = 20
+ export const SHOW_RESULT_TIME = 3

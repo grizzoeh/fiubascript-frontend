@@ -7,10 +7,12 @@ import { Text } from '../Text/Text';
 
 interface GameHeaderProps {
   questionNumber: number;
+  onFinishAnswerTime: () => void;
+  onFinishShowResultTime: () => void;
   coins: number;
 }
 
-export const GameHeader = ({questionNumber, coins}: GameHeaderProps) => {
+export const GameHeader = ({questionNumber, onFinishAnswerTime, onFinishShowResultTime, coins}: GameHeaderProps) => {
   return (
     <div className='gameHeader-container'>
       <img className='gameHeader-logo' src={triviaTitle} alt={'title'} />
@@ -19,7 +21,7 @@ export const GameHeader = ({questionNumber, coins}: GameHeaderProps) => {
         <img className='gameHeader-coin' src={coin} alt={'title'} />
         <Text text={`${coins}`}/>
       </div>
-      <CountdownTimer onFinish={() => {}}/>
+      <CountdownTimer onFinishAnswerTime={onFinishAnswerTime} onFinishShowResultTime={onFinishShowResultTime}/>
     </div>
   )
 }

@@ -1,41 +1,129 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { BackgroundContainer } from '../../components/BackgroundContainer/BackgroundContainer'
 import { AnswerButton } from '../../components/AnswerButton/AnswerButton'
 import { GameHeader } from '../../components/GameHeader/GameHeader'
 import './GameScreen.css'
 import { Question } from '../../components/Question/Question'
 import { Powerups } from '../../components/Powerups/Powerups'
+import { getQuestionsFromIA } from '../../services/openAiApi'
+import { useNavigate } from 'react-router-dom'
+import { Loader } from '../../components/Loader/Loader'
+
+type IAQuestions = {
+  "pregunta": string,
+  "respuestas": Array<string>,
+  "correcta": string
+}
 
 export const GameScreen = () => {
+  const navigate = useNavigate();
+  const [questions, setQuestions] = useState<IAQuestions[] | undefined>();
+  const [questionIndex, setquestionIndex] = useState(0)
+  const [selectedAnswer, setselectedAnswer] = useState('')
+  const [correctAnswer, setcorrectAnswer] = useState('')
+  const [incorrectAnswer, setincorrectAnswer] = useState('')
+
+  useEffect(() => {
+    getQuestionsFromIA().then((aiQuestions: Array<IAQuestions>) => {
+      console.log(aiQuestions);
+      setQuestions(aiQuestions as unknown as IAQuestions[]);
+    });
+  }, []);
+
+  const onFinishAnswerTime = () => {
+    console.log('Answer time ends, show Results!')
+    console.log('selectedAnswer', selectedAnswer)
+    questions && console.log('correctAnwer', questions[questionIndex].correcta)
+
+    if(questions){
+      if(questions[questionIndex].respuestas[0] === questions[questionIndex].correcta){
+        setcorrectAnswer('A')
+        if(selectedAnswer !== 'A') setincorrectAnswer(selectedAnswer)
+      }
+      if(questions[questionIndex].respuestas[1] === questions[questionIndex].correcta){
+        setcorrectAnswer('B')
+        if(selectedAnswer !== 'B') setincorrectAnswer(selectedAnswer)
+      }
+      if(questions[questionIndex].respuestas[2] === questions[questionIndex].correcta){
+        setcorrectAnswer('C')
+        if(selectedAnswer !== 'C') setincorrectAnswer(selectedAnswer)
+      }
+      if(questions[questionIndex].respuestas[3] === questions[questionIndex].correcta){
+        setcorrectAnswer('D')
+        if(selectedAnswer !== 'D') setincorrectAnswer(selectedAnswer)
+
+      }
+    }
+  }
+
+  const onFinishShowResultTime = () => {
+    console.log('timer ends from game')
+    setselectedAnswer('')
+    setcorrectAnswer('')
+    setincorrectAnswer('')
+    setquestionIndex(prevIndex => prevIndex < 10 ? prevIndex + 1 : prevIndex);
+    if(questionIndex === 9) {
+      alert('Juego Finalizado! :)')
+      navigate('/home')
+    }
+  }
+
   return (
     <BackgroundContainer>
-      <GameHeader questionNumber={1} coins={2550}/>
-      <div className='gameScreen-container'>
-        <div className='gameScreen-question-container'>
-          <div className='gameScreen-question-background'>
-            <Question
-              question={'¿Cuál de las siguientes razas es propia de los perros?'}
-              answerA={'Siamés'}
-              answerB={'Falabella'}
-              answerC={'Collie'}
-              answerD={'Braford'}
-            />
+      {questions ? <>
+        <GameHeader questionNumber={questionIndex + 1} coins={2550} onFinishAnswerTime={onFinishAnswerTime} onFinishShowResultTime={onFinishShowResultTime}/>
+        <div className='gameScreen-container'>
+          <div className='gameScreen-question-container'>
+            <div className='gameScreen-question-background'>
+              <Question
+                question={questions[questionIndex].pregunta}
+                answerA={questions[questionIndex].respuestas[0]}
+                answerB={questions[questionIndex].respuestas[1]}
+                answerC={questions[questionIndex].respuestas[2]}
+                answerD={questions[questionIndex].respuestas[3]}
+              />
+            </div>
+          </div>
+          <div className='gameScreen-powerups-container'>
+            <Powerups/>
+          </div>
+          <div className='gameScreen-buttons-container'>
+            <div className='gameScreen-buttons-row'>
+              <AnswerButton 
+                answer="A"
+                selectedAnswer={selectedAnswer === 'A'}
+                setSelectedAnswer={() => setselectedAnswer('A')}
+                isCorrect={correctAnswer === 'A'}
+                isIncorrect={incorrectAnswer === 'A'}
+              />
+              <AnswerButton
+                answer="B"
+                selectedAnswer={selectedAnswer === 'B'}
+                setSelectedAnswer={() => setselectedAnswer('B')}
+                isCorrect={correctAnswer === 'B'}
+                isIncorrect={incorrectAnswer === 'B'}
+              />
+            </div>
+            <div className='gameScreen-buttons-row'>
+              <AnswerButton
+                answer="C"
+                selectedAnswer={selectedAnswer === 'C'}
+                setSelectedAnswer={() => setselectedAnswer('C')}
+                isCorrect={correctAnswer === 'C'}
+                isIncorrect={incorrectAnswer === 'C'}
+              />
+              <AnswerButton
+                answer="D"
+                selectedAnswer={selectedAnswer === 'D'}
+                setSelectedAnswer={() => setselectedAnswer('D')}
+                isCorrect={correctAnswer === 'D'}
+                isIncorrect={incorrectAnswer === 'D'}
+              />
+            </div>
           </div>
         </div>
-        <div className='gameScreen-powerups-container'>
-          <Powerups/>
-        </div>
-        <div className='gameScreen-buttons-container'>
-          <div className='gameScreen-buttons-row'>
-            <AnswerButton answer="A" />
-            <AnswerButton answer="B" />
-          </div>
-          <div className='gameScreen-buttons-row'>
-            <AnswerButton answer="C" />
-            <AnswerButton answer="D" />
-          </div>
-        </div>
-      </div>
+      </>
+      : <Loader/>}
     </BackgroundContainer>
   )
 }

@@ -9,3 +9,13 @@
 .answer-button:hover {
   background-color: var(--primary);
 }
+
+.answer-button-selected {
+  background-color: var(--primary);
+}
+.answer-button-correct {
+  background-color: var(--success);
+}
+.answer-button-incorrect {
+  background-color: var(--error);
+}

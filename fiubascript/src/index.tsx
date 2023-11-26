@@ -9,11 +9,12 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <React.StrictMode>
+  // Comment out <React.StrictMode> to avoid double renders (extra cost in OpenAI API calls)
+  // <React.StrictMode>
     <UserContext>
       <App />
     </UserContext>
-  </React.StrictMode>
+  // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

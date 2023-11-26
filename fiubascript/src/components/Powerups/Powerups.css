@@ -5,6 +5,17 @@
 }
 
 .powerup-button{
+  border-radius: 1rem;
+  display: flex;
+  padding: 1rem;
+  border-width: 0rem;
+  background-color: transparent;
+}
+
+.powerup-button:hover{
+  background-color: var(--transparent-background);
+}
+.powerup-button{
   display: flex;
   padding: 1rem;
   border-width: 0rem;

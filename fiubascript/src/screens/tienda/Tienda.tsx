@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { BackgroundContainer } from '../../components/BackgroundContainer/BackgroundContainer'
-import { Navbar } from '../../components/Navbar/Navbar'
 import { PurchaseContainer } from '../../components/PurchaseContainer/PurchaseContainer'
 import Coin from '../../assets/coin.png';
 import './Tienda.css';
+import { Navbar } from '../../components/navbar/Navbar';
 
 
 const importImages = () => {

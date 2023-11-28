@@ -3,7 +3,7 @@ import { BackgroundContainer } from '../../components/BackgroundContainer/Backgr
 import { PurchaseContainer } from '../../components/PurchaseContainer/PurchaseContainer'
 import Coin from '../../assets/coin.png';
 import './Tienda.css';
-import { Navbar } from '../../components/navbar/Navbar';
+import { Navbar } from '../../components/Navbar/Navbar';
 
 
 const importImages = () => {

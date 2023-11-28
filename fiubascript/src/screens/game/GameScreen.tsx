@@ -8,6 +8,8 @@ import { Powerups } from '../../components/Powerups/Powerups'
 import { getQuestionsFromIA } from '../../services/openAiApi'
 import { useNavigate } from 'react-router-dom'
 import { Loader } from '../../components/Loader/Loader'
+import Confetti from 'react-confetti'
+import { CustomModal } from '../../components/CustomModal/CustomModal'
 
 type IAQuestions = {
   "pregunta": string,
@@ -22,6 +24,7 @@ export const GameScreen = () => {
   const [selectedAnswer, setselectedAnswer] = useState('')
   const [correctAnswer, setcorrectAnswer] = useState('')
   const [incorrectAnswer, setincorrectAnswer] = useState('')
+  const [gameOver, setgameOver] = useState(false)
 
   useEffect(() => {
     getQuestionsFromIA().then((aiQuestions: Array<IAQuestions>) => {
@@ -62,10 +65,16 @@ export const GameScreen = () => {
     setcorrectAnswer('')
     setincorrectAnswer('')
     setquestionIndex(prevIndex => prevIndex < 10 ? prevIndex + 1 : prevIndex);
+    // if(questionIndex === 0) {
+    //   setgameOver(true)
+    // }
     if(questionIndex === 9) {
-      alert('Juego Finalizado! :)')
-      navigate('/home')
+      setgameOver(true)
     }
+  }
+
+  const handleModalClose = () => {
+    navigate('/home')
   }
 
   return (
@@ -122,6 +131,13 @@ export const GameScreen = () => {
             </div>
           </div>
         </div>
+        <CustomModal showModal={gameOver} handleModalClose={handleModalClose}/>
+        {gameOver &&
+          <Confetti
+            gravity={0.05}
+          />
+        }
+        
       </>
       : <Loader/>}
     </BackgroundContainer>

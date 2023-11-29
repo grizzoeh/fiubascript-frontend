@@ -10,6 +10,8 @@ import { useNavigate } from 'react-router-dom'
 import { Loader } from '../../components/Loader/Loader'
 import Confetti from 'react-confetti'
 import { CustomModal } from '../../components/CustomModal/CustomModal'
+import { Avatar } from '../../components/Avatar/Avatar'
+import useUser from '../../hooks/useUser'
 
 type IAQuestions = {
   "pregunta": string,
@@ -25,6 +27,7 @@ export const GameScreen = () => {
   const [correctAnswer, setcorrectAnswer] = useState('')
   const [incorrectAnswer, setincorrectAnswer] = useState('')
   const [gameOver, setgameOver] = useState(false)
+  const {userInfo} = useUser()
 
   useEffect(() => {
     getQuestionsFromIA().then((aiQuestions: Array<IAQuestions>) => {
@@ -80,7 +83,7 @@ export const GameScreen = () => {
   return (
     <BackgroundContainer>
       {questions ? <>
-        <GameHeader questionNumber={questionIndex + 1} coins={2550} onFinishAnswerTime={onFinishAnswerTime} onFinishShowResultTime={onFinishShowResultTime}/>
+        <GameHeader questionNumber={questionIndex + 1} coins={userInfo.coins || 0} onFinishAnswerTime={onFinishAnswerTime} onFinishShowResultTime={onFinishShowResultTime}/>
         <div className='gameScreen-container'>
           <div className='gameScreen-question-container'>
             <div className='gameScreen-question-background'>
@@ -131,6 +134,8 @@ export const GameScreen = () => {
             </div>
           </div>
         </div>
+        <Avatar currentAvatarIndex={6}/>
+        {/* <Avatar currentAvatarIndex={userInfo.currentCharacter || 0}/> */}
         <CustomModal showModal={gameOver} handleModalClose={handleModalClose}/>
         {gameOver &&
           <Confetti

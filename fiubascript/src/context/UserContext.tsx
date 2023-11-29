@@ -11,6 +11,9 @@ export type UserInfo = {
     firstName:  string | null,
     lastName:  string | null,
     email:  string | null,
+    coins: number | null,
+    characters: Array<number> | null,
+    currentCharacter: number | null,
 };
 
 export function UserContext({ children } : UserContextProps) {
@@ -21,6 +24,9 @@ export function UserContext({ children } : UserContextProps) {
         firstName: null,
         lastName: null,
         email: null,
+        coins: null,
+        characters: null,
+        currentCharacter: null,
     })
 
     return <Context.Provider value={{

@@ -31,7 +31,10 @@ export const Login = () => {
                     id: data._id,
                     firstName: data.name,
                     lastName: data.lastName,
-                    email: data.email
+                    email: data.email,
+                    coins: data.coins,
+                    characters: data.characters,
+                    currentCharacter: data.currentCharacter || 0, 
                 });
 
                 navigate("/home");

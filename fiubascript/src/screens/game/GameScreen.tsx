@@ -44,20 +44,19 @@ export const GameScreen = () => {
     if(questions){
       if(questions[questionIndex].respuestas[0] === questions[questionIndex].correcta){
         setcorrectAnswer('A')
-        if(selectedAnswer !== 'A') setincorrectAnswer(selectedAnswer)
+        if(selectedAnswer !== 'A') setincorrectAnswer(prevAnswer => prevAnswer + selectedAnswer)
       }
       if(questions[questionIndex].respuestas[1] === questions[questionIndex].correcta){
         setcorrectAnswer('B')
-        if(selectedAnswer !== 'B') setincorrectAnswer(selectedAnswer)
+        if(selectedAnswer !== 'B') setincorrectAnswer(prevAnswer => prevAnswer + selectedAnswer)
       }
       if(questions[questionIndex].respuestas[2] === questions[questionIndex].correcta){
         setcorrectAnswer('C')
-        if(selectedAnswer !== 'C') setincorrectAnswer(selectedAnswer)
+        if(selectedAnswer !== 'C') setincorrectAnswer(prevAnswer => prevAnswer + selectedAnswer)
       }
       if(questions[questionIndex].respuestas[3] === questions[questionIndex].correcta){
         setcorrectAnswer('D')
-        if(selectedAnswer !== 'D') setincorrectAnswer(selectedAnswer)
-
+        if(selectedAnswer !== 'D') setincorrectAnswer(prevAnswer => prevAnswer + selectedAnswer)
       }
     }
   }
@@ -80,10 +79,43 @@ export const GameScreen = () => {
     navigate('/home')
   }
 
+  const onAddTime = () => {
+
+  }
+  const onDeleteOptions = () => {
+    let incorrectCount = 0
+    if(questions){
+      if(questions[questionIndex].respuestas[0] !== questions[questionIndex].correcta && incorrectCount < 2){
+        incorrectCount ++
+        setincorrectAnswer(prevAnswer => prevAnswer + 'A')
+      }
+      if(questions[questionIndex].respuestas[1] !== questions[questionIndex].correcta && incorrectCount < 2){
+        incorrectCount ++
+        setincorrectAnswer(prevAnswer => prevAnswer + 'B')
+      }
+      if(questions[questionIndex].respuestas[2] !== questions[questionIndex].correcta && incorrectCount < 2){
+        incorrectCount ++
+        setincorrectAnswer(prevAnswer => prevAnswer + 'C')
+      }
+      if(questions[questionIndex].respuestas[3] !== questions[questionIndex].correcta && incorrectCount < 2){
+        incorrectCount ++
+        setincorrectAnswer(prevAnswer => prevAnswer + 'D')
+      }
+    }
+  }
+  const onChangeQuestion = () => {
+    
+  }
+
   return (
     <BackgroundContainer>
       {questions ? <>
-        <GameHeader questionNumber={questionIndex + 1} coins={userInfo.coins || 0} onFinishAnswerTime={onFinishAnswerTime} onFinishShowResultTime={onFinishShowResultTime}/>
+        <GameHeader 
+          questionNumber={questionIndex + 1}
+          coins={userInfo.coins || 0}
+          onFinishAnswerTime={onFinishAnswerTime}
+          onFinishShowResultTime={onFinishShowResultTime}
+        />
         <div className='gameScreen-container'>
           <div className='gameScreen-question-container'>
             <div className='gameScreen-question-background'>
@@ -97,7 +129,11 @@ export const GameScreen = () => {
             </div>
           </div>
           <div className='gameScreen-powerups-container'>
-            <Powerups/>
+            <Powerups 
+              onAddTime={onAddTime}
+              onDeleteOptions={onDeleteOptions}
+              onChangeQuestion={onChangeQuestion}
+            />
           </div>
           <div className='gameScreen-buttons-container'>
             <div className='gameScreen-buttons-row'>
@@ -106,14 +142,14 @@ export const GameScreen = () => {
                 selectedAnswer={selectedAnswer === 'A'}
                 setSelectedAnswer={() => setselectedAnswer('A')}
                 isCorrect={correctAnswer === 'A'}
-                isIncorrect={incorrectAnswer === 'A'}
+                isIncorrect={incorrectAnswer.includes('A')}
               />
               <AnswerButton
                 answer="B"
                 selectedAnswer={selectedAnswer === 'B'}
                 setSelectedAnswer={() => setselectedAnswer('B')}
                 isCorrect={correctAnswer === 'B'}
-                isIncorrect={incorrectAnswer === 'B'}
+                isIncorrect={incorrectAnswer.includes('B')}
               />
             </div>
             <div className='gameScreen-buttons-row'>
@@ -122,14 +158,14 @@ export const GameScreen = () => {
                 selectedAnswer={selectedAnswer === 'C'}
                 setSelectedAnswer={() => setselectedAnswer('C')}
                 isCorrect={correctAnswer === 'C'}
-                isIncorrect={incorrectAnswer === 'C'}
+                isIncorrect={incorrectAnswer.includes('C')}
               />
               <AnswerButton
                 answer="D"
                 selectedAnswer={selectedAnswer === 'D'}
                 setSelectedAnswer={() => setselectedAnswer('D')}
                 isCorrect={correctAnswer === 'D'}
-                isIncorrect={incorrectAnswer === 'D'}
+                isIncorrect={incorrectAnswer.includes('D')}
               />
             </div>
           </div>

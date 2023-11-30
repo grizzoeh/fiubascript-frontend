@@ -5,10 +5,16 @@ import Bomb from '../../assets/Bomb.png'
 import Reload from '../../assets/Reload.png'
 import coin from '../../assets/coin.png'
 
-export const Powerups = () => {
+type PowerupsProps = {
+  onAddTime: () => void,
+  onDeleteOptions: () => void,
+  onChangeQuestion: () => void,
+}
+
+export const Powerups = ({onAddTime, onDeleteOptions, onChangeQuestion} : PowerupsProps) => {
   return (
     <div className='powerups-container'>
-      <button className='powerup-button'>
+      <button className='powerup-button' onClick={onAddTime}>
         <img src={AddTime} alt='Add' className='powerup-button-icon'/>
         <div>
           <div className='powerup-button-text'>+15 segundos</div>
@@ -18,7 +24,7 @@ export const Powerups = () => {
           </div>
         </div>
       </button>
-      <button className='powerup-button'>
+      <button className='powerup-button' onClick={onDeleteOptions}>
         <img src={Bomb} alt='Add' className='powerup-button-icon'/>
         <div>
           <div className='powerup-button-text'>Eliminar 2 opciones</div>
@@ -28,7 +34,7 @@ export const Powerups = () => {
           </div>
         </div>
       </button>
-      <button className='powerup-button'>
+      <button className='powerup-button' onClick={onChangeQuestion}>
         <img src={Reload} alt='Add' className='powerup-button-icon powerup-icon-padded'/>
         <div>
           <div className='powerup-button-text'>Cambiar pregunta</div>

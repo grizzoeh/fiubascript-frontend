@@ -104,7 +104,11 @@ export const GameScreen = () => {
     }
   }
   const onChangeQuestion = () => {
-    
+    if(questions){
+      const questionsAux = questions
+      questionsAux.splice(questionIndex, 1)
+      setQuestions([...questionsAux])
+    }
   }
 
   return (

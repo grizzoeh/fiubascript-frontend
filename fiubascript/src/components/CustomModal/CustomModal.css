@@ -1,0 +1,7 @@
+.custom-modal-header-success{
+  background-color: var(--success);
+}
+
+.custom-modal-header-error{
+  background-color: var(--error);
+}

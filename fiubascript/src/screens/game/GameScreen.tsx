@@ -9,10 +9,11 @@ import { getQuestionsFromIA } from '../../services/openAiApi'
 import { useNavigate } from 'react-router-dom'
 import { Loader } from '../../components/Loader/Loader'
 import Confetti from 'react-confetti'
-import { CustomModal } from '../../components/CustomModal/CustomModal'
+import { CustomGameOverModal } from '../../components/CustomModal/CustomGameOverModal'
 import { Avatar } from '../../components/Avatar/Avatar'
 import useUser from '../../hooks/useUser'
 import { ADD_TIME_POWERUP } from '../../constants/constants'
+import { CustomAnswerModal } from '../../components/CustomModal/CustomAnswerModal'
 
 type IAQuestions = {
   "pregunta": string,
@@ -30,6 +31,7 @@ export const GameScreen = () => {
   const [discardedAnswer, setdiscardedAnswer] = useState('')
   const [powerupUsed, setpowerupUsed] = useState(false)
   const [addTime, setaddTime] = useState(0)
+  const [questionOver, setquestionOver] = useState(false)
   const [gameOver, setgameOver] = useState(false)
   const {userInfo} = useUser()
 
@@ -45,19 +47,24 @@ export const GameScreen = () => {
         setcorrectAnswer('A')
         if(selectedAnswer !== 'A') setincorrectAnswer(selectedAnswer)
       }
-      if(questions[questionIndex].respuestas[1] === questions[questionIndex].correcta){
+      else if(questions[questionIndex].respuestas[1] === questions[questionIndex].correcta){
         setcorrectAnswer('B')
         if(selectedAnswer !== 'B') setincorrectAnswer(selectedAnswer)
       }
-      if(questions[questionIndex].respuestas[2] === questions[questionIndex].correcta){
+      else if(questions[questionIndex].respuestas[2] === questions[questionIndex].correcta){
         setcorrectAnswer('C')
         if(selectedAnswer !== 'C') setincorrectAnswer(selectedAnswer)
       }
-      if(questions[questionIndex].respuestas[3] === questions[questionIndex].correcta){
+      else if(questions[questionIndex].respuestas[3] === questions[questionIndex].correcta){
         setcorrectAnswer('D')
         if(selectedAnswer !== 'D') setincorrectAnswer(selectedAnswer)
       }
+      else{
+        setcorrectAnswer('error')
+        console.log('AI Error: correct answer not found')
+      }
     }
+    setquestionOver(true)
   }
 
   const onFinishShowResultTime = () => {
@@ -72,6 +79,7 @@ export const GameScreen = () => {
   }
 
   const cleanGameScreen = () => {
+    setquestionOver(false)
     setselectedAnswer('')
     setcorrectAnswer('')
     setincorrectAnswer('')
@@ -192,7 +200,8 @@ export const GameScreen = () => {
         </div>
         <Avatar currentAvatarIndex={6}/>
         {/* <Avatar currentAvatarIndex={userInfo.currentCharacter || 0}/> */}
-        <CustomModal showModal={gameOver} handleModalClose={handleModalClose}/>
+        <CustomGameOverModal showModal={gameOver} handleModalClose={handleModalClose}/>
+        <CustomAnswerModal correctAnswer={correctAnswer} selectedAnswer={selectedAnswer} showModal={questionOver} handleModalClose={() => {}}/>
         {gameOver &&
           <Confetti
             gravity={0.05}

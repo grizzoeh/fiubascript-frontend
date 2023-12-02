@@ -1,15 +1,15 @@
 import React from 'react'
 import { Modal, Button } from 'react-bootstrap';
 
-interface CustomModalProps {
+interface CustomGameOverModalProps {
   showModal: boolean;
   handleModalClose: () => void;
 }
 
-export const CustomModal = ({ showModal, handleModalClose} : CustomModalProps) => {
+export const CustomGameOverModal = ({ showModal, handleModalClose} : CustomGameOverModalProps) => {
   return (
     <Modal show={showModal} onHide={handleModalClose} animation={true} centered size='lg' backdrop={false}>
-      <Modal.Header closeButton className='bg-primary-light text-white border-0 justify-content-center'>
+      <Modal.Header className='bg-primary-light text-white border-0 justify-content-center'>
         <Modal.Title>Felicitaciones!</Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -19,7 +19,7 @@ export const CustomModal = ({ showModal, handleModalClose} : CustomModalProps) =
       </Modal.Body>
       <div className='d-flex justify-content-center mg-2 mb-4'>
         <Button variant="primary" onClick={handleModalClose} className='mx-auto bg-primary-light' size='lg'>
-          Volver a Home
+          Volver al inicio
         </Button>
       </div>
     </Modal>

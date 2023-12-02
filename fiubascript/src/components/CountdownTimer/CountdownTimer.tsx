@@ -6,31 +6,51 @@ type CountdownTimerProps = {
   onFinishAnswerTime: () => void
   onFinishShowResultTime: () => void
   addTime: number
+  selectedAnswer: string
+  gameOver: boolean
 }
 
-export const CountdownTimer = ({ onFinishAnswerTime, onFinishShowResultTime, addTime }: CountdownTimerProps) => {
+export const CountdownTimer = ({ onFinishAnswerTime, onFinishShowResultTime, addTime, selectedAnswer, gameOver }: CountdownTimerProps) => {
 
   const [timer, settimer] = useState(ANSWER_TIME)
   const [timeAdded, settimeAdded] = useState(false)
 
   useEffect(() => {
-    if(addTime > 0 && !timeAdded){
-      console.log('Add time in timer')
+    if(gameOver){
+      console.log('Se termino el juego')
+      settimer(0)
+      return
+    }
+    else if(selectedAnswer !== ''){
+      console.log('Se selecciono una respuesta')
+      timeEnded()
+    }
+    else if(addTime > 0 && !timeAdded){
+      console.log('Se agrego tiempo')
       settimer(prevTimer => prevTimer + addTime)
       settimeAdded(true)
-    }else{
+    }
+    else{
+      console.log('Continua el paso del tiempo')
       setTimeout(() => {
         settimer(prevTimer => prevTimer > 0 ? prevTimer - 1 : prevTimer)
         if(timer === 0){
-          onFinishAnswerTime()
-          setTimeout(() => {
-            onFinishShowResultTime()
-            settimer(ANSWER_TIME)
-          }, SHOW_RESULT_TIME*1000);
+          console.log('Se termino el tiempo')
+          timeEnded()
         }
       }, 1000);
     }
-  }, [timer])
+  }, [timer, gameOver])
+
+  const timeEnded = () => {
+    console.log('Iniciando timer de mostrar resultado')
+    onFinishAnswerTime()
+    setTimeout(() => {
+      console.log('Finalizando timer de mostrar resultado')
+      onFinishShowResultTime()
+      settimer(ANSWER_TIME)
+    }, SHOW_RESULT_TIME*1000);
+  }
 
   // useEffect(() => {
   //   console.log('addTime')

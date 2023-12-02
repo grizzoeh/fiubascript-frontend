@@ -69,7 +69,7 @@ export const GameScreen = () => {
 
   const onFinishShowResultTime = () => {
     cleanGameScreen()
-    setquestionIndex(prevIndex => prevIndex < 10 ? prevIndex + 1 : prevIndex);
+    setquestionIndex(prevIndex => prevIndex < 9 ? prevIndex + 1 : prevIndex);
     // if(questionIndex === 0) {
     //   setgameOver(true)
     // }
@@ -122,11 +122,16 @@ export const GameScreen = () => {
   const onChangeQuestion = () => {
     cleanGameScreen()
     setpowerupUsed(true)
+    setgameOver(true)
     if(questions){
       const questionsAux = questions
       questionsAux.splice(questionIndex, 1)
       setQuestions([...questionsAux])
     }
+  }
+
+  const handleAnswerSelection = (answer: string) => {
+    setselectedAnswer(answer)
   }
 
   return (
@@ -138,6 +143,8 @@ export const GameScreen = () => {
           onFinishAnswerTime={onFinishAnswerTime}
           onFinishShowResultTime={onFinishShowResultTime}
           addTime={addTime}
+          selectedAnswer={selectedAnswer}
+          gameOver={gameOver}
         />
         <div className='gameScreen-container'>
           <div className='gameScreen-question-container'>
@@ -164,7 +171,7 @@ export const GameScreen = () => {
               <AnswerButton 
                 answer="A"
                 selectedAnswer={selectedAnswer === 'A'}
-                setSelectedAnswer={() => setselectedAnswer('A')}
+                setSelectedAnswer={() => handleAnswerSelection('A')}
                 isCorrect={correctAnswer === 'A'}
                 isIncorrect={incorrectAnswer === 'A'}
                 isDiscarded={discardedAnswer.includes('A')}
@@ -172,7 +179,7 @@ export const GameScreen = () => {
               <AnswerButton
                 answer="B"
                 selectedAnswer={selectedAnswer === 'B'}
-                setSelectedAnswer={() => setselectedAnswer('B')}
+                setSelectedAnswer={() => handleAnswerSelection('B')}
                 isCorrect={correctAnswer === 'B'}
                 isIncorrect={incorrectAnswer === 'B'}
                 isDiscarded={discardedAnswer.includes('B')}
@@ -182,7 +189,7 @@ export const GameScreen = () => {
               <AnswerButton
                 answer="C"
                 selectedAnswer={selectedAnswer === 'C'}
-                setSelectedAnswer={() => setselectedAnswer('C')}
+                setSelectedAnswer={() => handleAnswerSelection('C')}
                 isCorrect={correctAnswer === 'C'}
                 isIncorrect={incorrectAnswer === 'C'}
                 isDiscarded={discardedAnswer.includes('C')}
@@ -190,7 +197,7 @@ export const GameScreen = () => {
               <AnswerButton
                 answer="D"
                 selectedAnswer={selectedAnswer === 'D'}
-                setSelectedAnswer={() => setselectedAnswer('D')}
+                setSelectedAnswer={() => handleAnswerSelection('D')}
                 isCorrect={correctAnswer === 'D'}
                 isIncorrect={incorrectAnswer === 'D'}
                 isDiscarded={discardedAnswer.includes('D')}

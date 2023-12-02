@@ -12,7 +12,7 @@
   background-color: transparent;
 }
 
-.powerup-button:hover{
+.powerup-button:hover:enabled{
   background-color: var(--transparent-background);
 }
 .powerup-button{
@@ -32,9 +32,19 @@
   color: white
 }
 
+.powerup-button-text-disabled{
+  font-size: 1rem;
+  color: gray
+}
+
 .powerup-button-price-text{
   font-size: 1rem;
   color: var(--primary-lighter)
+}
+
+.powerup-button-price-text-disabled{
+  font-size: 1rem;
+  color: gray
 }
 
 .powerup-button-price-icon{

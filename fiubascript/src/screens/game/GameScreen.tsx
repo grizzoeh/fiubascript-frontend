@@ -27,6 +27,7 @@ export const GameScreen = () => {
   const [correctAnswer, setcorrectAnswer] = useState('')
   const [incorrectAnswer, setincorrectAnswer] = useState('')
   const [discardedAnswer, setdiscardedAnswer] = useState('')
+  const [powerupUsed, setpowerupUsed] = useState(false)
   const [gameOver, setgameOver] = useState(false)
   const {userInfo} = useUser()
 
@@ -63,11 +64,7 @@ export const GameScreen = () => {
   }
 
   const onFinishShowResultTime = () => {
-    console.log('timer ends from game')
-    setselectedAnswer('')
-    setcorrectAnswer('')
-    setincorrectAnswer('')
-    setdiscardedAnswer('')
+    cleanGameScreen()
     setquestionIndex(prevIndex => prevIndex < 10 ? prevIndex + 1 : prevIndex);
     // if(questionIndex === 0) {
     //   setgameOver(true)
@@ -77,14 +74,25 @@ export const GameScreen = () => {
     }
   }
 
+  const cleanGameScreen = () => {
+    setselectedAnswer('')
+    setcorrectAnswer('')
+    setincorrectAnswer('')
+    setdiscardedAnswer('')
+    setpowerupUsed(false)
+  }
+
   const handleModalClose = () => {
     navigate('/home')
   }
 
   const onAddTime = () => {
+    setpowerupUsed(true)
 
   }
+
   const onDeleteOptions = () => {
+    setpowerupUsed(true)
     let discardedCount = 0
     if(questions){
       if(questions[questionIndex].respuestas[2] !== questions[questionIndex].correcta && discardedCount < 2){
@@ -106,13 +114,11 @@ export const GameScreen = () => {
     }
   }
   const onChangeQuestion = () => {
+    cleanGameScreen()
+    setpowerupUsed(true)
     if(questions){
       const questionsAux = questions
       questionsAux.splice(questionIndex, 1)
-      setselectedAnswer('')
-      setcorrectAnswer('')
-      setincorrectAnswer('')
-      setdiscardedAnswer('')
       setQuestions([...questionsAux])
     }
   }
@@ -139,7 +145,8 @@ export const GameScreen = () => {
             </div>
           </div>
           <div className='gameScreen-powerups-container'>
-            <Powerups 
+            <Powerups
+              powerupUsed={powerupUsed}
               onAddTime={onAddTime}
               onDeleteOptions={onDeleteOptions}
               onChangeQuestion={onChangeQuestion}

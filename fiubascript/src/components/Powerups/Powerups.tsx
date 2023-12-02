@@ -8,6 +8,7 @@ import BombDisabled from '../../assets/BombDisabled.png'
 import ReloadDisabled from '../../assets/ReloadDisabled.png'
 import coin from '../../assets/coin.png'
 import coinDisabled from '../../assets/coinDisabled.png'
+import { POWERUP_PRICES } from '../../constants/prices'
 
 type PowerupsProps = {
   onAddTime: () => void,
@@ -25,7 +26,7 @@ export const Powerups = ({onAddTime, onDeleteOptions, onChangeQuestion, powerupU
           <div className={powerupUsed ? 'powerup-button-text-disabled' : 'powerup-button-text'}>+10 segundos</div>
           <div className='powerup-button-side-container'>
             <img className='powerup-button-price-icon' src={powerupUsed ? coinDisabled : coin} alt={'title'} />
-            <div className={powerupUsed ? 'powerup-button-price-text-disabled' : 'powerup-button-price-text'}>200</div>
+            <div className={powerupUsed ? 'powerup-button-price-text-disabled' : 'powerup-button-price-text'}>{POWERUP_PRICES.addTime}</div>
           </div>
         </div>
       </button>
@@ -35,7 +36,7 @@ export const Powerups = ({onAddTime, onDeleteOptions, onChangeQuestion, powerupU
           <div className={powerupUsed ? 'powerup-button-text-disabled' : 'powerup-button-text'}>Eliminar 2 opciones</div>
           <div className='powerup-button-side-container'>
             <img className='powerup-button-price-icon' src={powerupUsed ? coinDisabled : coin} alt={'title'} />
-            <div className={powerupUsed ? 'powerup-button-price-text-disabled' : 'powerup-button-price-text'}>600</div>
+            <div className={powerupUsed ? 'powerup-button-price-text-disabled' : 'powerup-button-price-text'}>{POWERUP_PRICES.deleteOptions}</div>
           </div>
         </div>
       </button>
@@ -45,7 +46,7 @@ export const Powerups = ({onAddTime, onDeleteOptions, onChangeQuestion, powerupU
           <div className={powerupUsed ? 'powerup-button-text-disabled' : 'powerup-button-text'}>Cambiar pregunta</div>
           <div className='powerup-button-side-container'>
             <img className='powerup-button-price-icon' src={powerupUsed ? coinDisabled : coin} alt={'title'} />
-            <div className={powerupUsed ? 'powerup-button-price-text-disabled' : 'powerup-button-price-text'}>300</div>
+            <div className={powerupUsed ? 'powerup-button-price-text-disabled' : 'powerup-button-price-text'}>{POWERUP_PRICES.changeQuestion}</div>
           </div>
         </div>
       </button>

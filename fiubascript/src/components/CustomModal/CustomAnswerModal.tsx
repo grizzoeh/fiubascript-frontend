@@ -28,8 +28,7 @@ export const CustomAnswerModal = ({ showModal, handleModalClose, correctAnswer, 
       setbody(`Respuesta correcta: ${correctAnswer}`)
     } else if (selectedAnswer !== ''){
       settitle('Incorrecto!')
-      setbody(`Respuesta correcta: ${correctAnswer}
-      Tu respuesta: ${selectedAnswer}`)
+      setbody(`Respuesta correcta: ${correctAnswer}-Tu respuesta: ${selectedAnswer}`)
     }else {
       settitle('Tiempo agotado!')
       setbody(`Respuesta correcta: ${correctAnswer}`)
@@ -42,8 +41,10 @@ export const CustomAnswerModal = ({ showModal, handleModalClose, correctAnswer, 
         <Modal.Title>{title}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <div className='d-flex justify-content-center mt-2 mb-5'>
-          {body}
+        <div className='d-flex flex-column align-items-center justify-content-center mt-3 mb-3'>
+          {body.split('-').map((text) => {
+            return <p>{text}</p>
+          })}
         </div>
       </Modal.Body>
       {/* <div className='d-flex justify-content-center mg-2 mb-4'>

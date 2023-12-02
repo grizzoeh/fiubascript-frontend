@@ -12,6 +12,7 @@ import Confetti from 'react-confetti'
 import { CustomModal } from '../../components/CustomModal/CustomModal'
 import { Avatar } from '../../components/Avatar/Avatar'
 import useUser from '../../hooks/useUser'
+import { ADD_TIME_POWERUP } from '../../constants/constants'
 
 type IAQuestions = {
   "pregunta": string,
@@ -28,21 +29,17 @@ export const GameScreen = () => {
   const [incorrectAnswer, setincorrectAnswer] = useState('')
   const [discardedAnswer, setdiscardedAnswer] = useState('')
   const [powerupUsed, setpowerupUsed] = useState(false)
+  const [addTime, setaddTime] = useState(0)
   const [gameOver, setgameOver] = useState(false)
   const {userInfo} = useUser()
 
   useEffect(() => {
     getQuestionsFromIA().then((aiQuestions: Array<IAQuestions>) => {
-      console.log(aiQuestions);
       setQuestions(aiQuestions as unknown as IAQuestions[]);
     });
   }, []);
 
   const onFinishAnswerTime = () => {
-    console.log('Answer time ends, show Results!')
-    console.log('selectedAnswer', selectedAnswer)
-    questions && console.log('correctAnwer', questions[questionIndex].correcta)
-
     if(questions){
       if(questions[questionIndex].respuestas[0] === questions[questionIndex].correcta){
         setcorrectAnswer('A')
@@ -80,6 +77,7 @@ export const GameScreen = () => {
     setincorrectAnswer('')
     setdiscardedAnswer('')
     setpowerupUsed(false)
+    setaddTime(0)
   }
 
   const handleModalClose = () => {
@@ -88,7 +86,7 @@ export const GameScreen = () => {
 
   const onAddTime = () => {
     setpowerupUsed(true)
-
+    setaddTime(ADD_TIME_POWERUP)
   }
 
   const onDeleteOptions = () => {
@@ -131,6 +129,7 @@ export const GameScreen = () => {
           coins={userInfo.coins || 0}
           onFinishAnswerTime={onFinishAnswerTime}
           onFinishShowResultTime={onFinishShowResultTime}
+          addTime={addTime}
         />
         <div className='gameScreen-container'>
           <div className='gameScreen-question-container'>

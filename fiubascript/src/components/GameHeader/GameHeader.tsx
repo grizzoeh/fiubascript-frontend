@@ -10,9 +10,10 @@ interface GameHeaderProps {
   onFinishAnswerTime: () => void;
   onFinishShowResultTime: () => void;
   coins: number;
+  addTime: number;
 }
 
-export const GameHeader = ({questionNumber, onFinishAnswerTime, onFinishShowResultTime, coins}: GameHeaderProps) => {
+export const GameHeader = ({questionNumber, onFinishAnswerTime, onFinishShowResultTime, coins, addTime}: GameHeaderProps) => {
   return (
     <div className='gameHeader-container'>
       <img className='gameHeader-logo' src={triviaTitle} alt={'title'} />
@@ -21,7 +22,7 @@ export const GameHeader = ({questionNumber, onFinishAnswerTime, onFinishShowResu
         <img className='gameHeader-coin' src={coin} alt={'title'} />
         <Text text={`${coins}`}/>
       </div>
-      <CountdownTimer onFinishAnswerTime={onFinishAnswerTime} onFinishShowResultTime={onFinishShowResultTime}/>
+      <CountdownTimer onFinishAnswerTime={onFinishAnswerTime} onFinishShowResultTime={onFinishShowResultTime} addTime={addTime}/>
     </div>
   )
 }

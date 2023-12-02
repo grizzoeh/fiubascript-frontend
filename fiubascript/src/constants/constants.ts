@@ -7,4 +7,5 @@ export const COLORS = {
   error: '#A61A1A',
 }
  export const ANSWER_TIME = 20
+ export const ADD_TIME_POWERUP = 10
  export const SHOW_RESULT_TIME = 3

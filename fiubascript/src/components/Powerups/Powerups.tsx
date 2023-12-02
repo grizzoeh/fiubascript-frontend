@@ -22,7 +22,7 @@ export const Powerups = ({onAddTime, onDeleteOptions, onChangeQuestion, powerupU
       <button className='powerup-button' onClick={onAddTime} disabled={powerupUsed}>
         <img src={powerupUsed ? AddTimeDisabled : AddTime} alt='Add' className='powerup-button-icon'/>
         <div>
-          <div className={powerupUsed ? 'powerup-button-text-disabled' : 'powerup-button-text'}>+15 segundos</div>
+          <div className={powerupUsed ? 'powerup-button-text-disabled' : 'powerup-button-text'}>+10 segundos</div>
           <div className='powerup-button-side-container'>
             <img className='powerup-button-price-icon' src={powerupUsed ? coinDisabled : coin} alt={'title'} />
             <div className={powerupUsed ? 'powerup-button-price-text-disabled' : 'powerup-button-price-text'}>200</div>

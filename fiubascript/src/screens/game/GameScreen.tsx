@@ -26,6 +26,7 @@ export const GameScreen = () => {
   const [selectedAnswer, setselectedAnswer] = useState('')
   const [correctAnswer, setcorrectAnswer] = useState('')
   const [incorrectAnswer, setincorrectAnswer] = useState('')
+  const [discardedAnswer, setdiscardedAnswer] = useState('')
   const [gameOver, setgameOver] = useState(false)
   const {userInfo} = useUser()
 
@@ -44,19 +45,19 @@ export const GameScreen = () => {
     if(questions){
       if(questions[questionIndex].respuestas[0] === questions[questionIndex].correcta){
         setcorrectAnswer('A')
-        if(selectedAnswer !== 'A') setincorrectAnswer(prevAnswer => prevAnswer + selectedAnswer)
+        if(selectedAnswer !== 'A') setincorrectAnswer(selectedAnswer)
       }
       if(questions[questionIndex].respuestas[1] === questions[questionIndex].correcta){
         setcorrectAnswer('B')
-        if(selectedAnswer !== 'B') setincorrectAnswer(prevAnswer => prevAnswer + selectedAnswer)
+        if(selectedAnswer !== 'B') setincorrectAnswer(selectedAnswer)
       }
       if(questions[questionIndex].respuestas[2] === questions[questionIndex].correcta){
         setcorrectAnswer('C')
-        if(selectedAnswer !== 'C') setincorrectAnswer(prevAnswer => prevAnswer + selectedAnswer)
+        if(selectedAnswer !== 'C') setincorrectAnswer(selectedAnswer)
       }
       if(questions[questionIndex].respuestas[3] === questions[questionIndex].correcta){
         setcorrectAnswer('D')
-        if(selectedAnswer !== 'D') setincorrectAnswer(prevAnswer => prevAnswer + selectedAnswer)
+        if(selectedAnswer !== 'D') setincorrectAnswer(selectedAnswer)
       }
     }
   }
@@ -66,6 +67,7 @@ export const GameScreen = () => {
     setselectedAnswer('')
     setcorrectAnswer('')
     setincorrectAnswer('')
+    setdiscardedAnswer('')
     setquestionIndex(prevIndex => prevIndex < 10 ? prevIndex + 1 : prevIndex);
     // if(questionIndex === 0) {
     //   setgameOver(true)
@@ -83,23 +85,23 @@ export const GameScreen = () => {
 
   }
   const onDeleteOptions = () => {
-    let incorrectCount = 0
+    let discardedCount = 0
     if(questions){
-      if(questions[questionIndex].respuestas[0] !== questions[questionIndex].correcta && incorrectCount < 2){
-        incorrectCount ++
-        setincorrectAnswer(prevAnswer => prevAnswer + 'A')
+      if(questions[questionIndex].respuestas[2] !== questions[questionIndex].correcta && discardedCount < 2){
+        discardedCount ++
+        setdiscardedAnswer(prevState => prevState + 'C')
       }
-      if(questions[questionIndex].respuestas[1] !== questions[questionIndex].correcta && incorrectCount < 2){
-        incorrectCount ++
-        setincorrectAnswer(prevAnswer => prevAnswer + 'B')
+      if(questions[questionIndex].respuestas[0] !== questions[questionIndex].correcta && discardedCount < 2){
+        discardedCount ++
+        setdiscardedAnswer(prevState => prevState + 'A')
       }
-      if(questions[questionIndex].respuestas[2] !== questions[questionIndex].correcta && incorrectCount < 2){
-        incorrectCount ++
-        setincorrectAnswer(prevAnswer => prevAnswer + 'C')
+      if(questions[questionIndex].respuestas[3] !== questions[questionIndex].correcta && discardedCount < 2){
+        discardedCount ++
+        setdiscardedAnswer(prevState => prevState + 'D')
       }
-      if(questions[questionIndex].respuestas[3] !== questions[questionIndex].correcta && incorrectCount < 2){
-        incorrectCount ++
-        setincorrectAnswer(prevAnswer => prevAnswer + 'D')
+      if(questions[questionIndex].respuestas[1] !== questions[questionIndex].correcta && discardedCount < 2){
+        discardedCount ++
+        setdiscardedAnswer(prevState => prevState + 'B')
       }
     }
   }
@@ -107,6 +109,10 @@ export const GameScreen = () => {
     if(questions){
       const questionsAux = questions
       questionsAux.splice(questionIndex, 1)
+      setselectedAnswer('')
+      setcorrectAnswer('')
+      setincorrectAnswer('')
+      setdiscardedAnswer('')
       setQuestions([...questionsAux])
     }
   }
@@ -146,14 +152,16 @@ export const GameScreen = () => {
                 selectedAnswer={selectedAnswer === 'A'}
                 setSelectedAnswer={() => setselectedAnswer('A')}
                 isCorrect={correctAnswer === 'A'}
-                isIncorrect={incorrectAnswer.includes('A')}
+                isIncorrect={incorrectAnswer === 'A'}
+                isDiscarded={discardedAnswer.includes('A')}
               />
               <AnswerButton
                 answer="B"
                 selectedAnswer={selectedAnswer === 'B'}
                 setSelectedAnswer={() => setselectedAnswer('B')}
                 isCorrect={correctAnswer === 'B'}
-                isIncorrect={incorrectAnswer.includes('B')}
+                isIncorrect={incorrectAnswer === 'B'}
+                isDiscarded={discardedAnswer.includes('B')}
               />
             </div>
             <div className='gameScreen-buttons-row'>
@@ -162,14 +170,16 @@ export const GameScreen = () => {
                 selectedAnswer={selectedAnswer === 'C'}
                 setSelectedAnswer={() => setselectedAnswer('C')}
                 isCorrect={correctAnswer === 'C'}
-                isIncorrect={incorrectAnswer.includes('C')}
+                isIncorrect={incorrectAnswer === 'C'}
+                isDiscarded={discardedAnswer.includes('C')}
               />
               <AnswerButton
                 answer="D"
                 selectedAnswer={selectedAnswer === 'D'}
                 setSelectedAnswer={() => setselectedAnswer('D')}
                 isCorrect={correctAnswer === 'D'}
-                isIncorrect={incorrectAnswer.includes('D')}
+                isIncorrect={incorrectAnswer === 'D'}
+                isDiscarded={discardedAnswer.includes('D')}
               />
             </div>
           </div>

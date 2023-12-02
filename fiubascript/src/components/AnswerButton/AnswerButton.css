@@ -6,17 +6,32 @@
   border: 4px solid transparent;
   margin: 1rem;
 }
-.answer-button:hover {
+
+.answer-button:hover:enabled {
   background-color: var(--primary);
+}
+
+.answer-button-discarded {
+  background-color: gray;
 }
 
 .answer-button-selected {
   background-color: var(--primary);
   border: 4px solid var(--primary-light);
 }
+
 .answer-button-correct {
   background-color: var(--success);
 }
+
+.answer-button-correct:hover:enabled {
+  background-color: var(--success);
+}
+
 .answer-button-incorrect {
+  background-color: var(--error);
+}
+
+.answer-button-incorrect:hover:enabled {
   background-color: var(--error);
 }

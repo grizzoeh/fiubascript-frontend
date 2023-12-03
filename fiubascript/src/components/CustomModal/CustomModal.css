@@ -5,3 +5,7 @@
 .custom-modal-header-error{
   background-color: var(--error);
 }
+
+.custom-modal-button-error{
+  background-color: var(--error);
+}

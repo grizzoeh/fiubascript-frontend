@@ -14,6 +14,7 @@ import { Avatar } from '../../components/Avatar/Avatar'
 import useUser from '../../hooks/useUser'
 import { ADD_TIME_POWERUP } from '../../constants/constants'
 import { CustomAnswerModal } from '../../components/CustomModal/CustomAnswerModal'
+import { CustomLeaveModal } from '../../components/CustomModal/CustomLeaveModal'
 
 type IAQuestions = {
   "pregunta": string,
@@ -33,6 +34,7 @@ export const GameScreen = () => {
   const [addTime, setaddTime] = useState(0)
   const [questionOver, setquestionOver] = useState(false)
   const [gameOver, setgameOver] = useState(false)
+  const [leaveModal, setleaveModal] = useState(false)
   const {userInfo} = useUser()
 
   useEffect(() => {
@@ -66,18 +68,7 @@ export const GameScreen = () => {
     }
     setquestionOver(true)
   }
-
-  const onFinishShowResultTime = () => {
-    cleanGameScreen()
-    setquestionIndex(prevIndex => prevIndex < 9 ? prevIndex + 1 : prevIndex);
-    // if(questionIndex === 0) {
-    //   setgameOver(true)
-    // }
-    if(questionIndex === 9) {
-      setgameOver(true)
-    }
-  }
-
+  
   const cleanGameScreen = () => {
     setquestionOver(false)
     setselectedAnswer('')
@@ -88,8 +79,15 @@ export const GameScreen = () => {
     setaddTime(0)
   }
 
-  const handleModalClose = () => {
-    navigate('/home')
+  const onFinishShowResultTime = () => {
+    cleanGameScreen()
+    setquestionIndex(prevIndex => prevIndex < 9 ? prevIndex + 1 : prevIndex);
+    // if(questionIndex === 0) {
+    //   setgameOver(true)
+    // }
+    if(questionIndex === 9) {
+      setgameOver(true)
+    }
   }
 
   const onAddTime = () => {
@@ -134,6 +132,22 @@ export const GameScreen = () => {
     setselectedAnswer(answer)
   }
 
+  const handleLeave = () => {
+    navigate('/home')
+  }
+
+  const handleGameOverModalClose = () => {
+    navigate('/home')
+  }
+  
+  const handleLeaveModalOpen = () => {
+    setleaveModal(true)
+  }
+
+  const handleLeaveModalClose = () => {
+    setleaveModal(false)
+  }
+
   return (
     <BackgroundContainer>
       {questions ? <>
@@ -145,6 +159,7 @@ export const GameScreen = () => {
           addTime={addTime}
           selectedAnswer={selectedAnswer}
           gameOver={gameOver}
+          onLeave={handleLeaveModalOpen}
         />
         <div className='gameScreen-container'>
           <div className='gameScreen-question-container'>
@@ -205,9 +220,9 @@ export const GameScreen = () => {
             </div>
           </div>
         </div>
-        <Avatar currentAvatarIndex={6}/>
-        {/* <Avatar currentAvatarIndex={userInfo.currentCharacter || 0}/> */}
-        <CustomGameOverModal showModal={gameOver} handleModalClose={handleModalClose}/>
+        <Avatar currentAvatarIndex={userInfo.currentCharacter || 0}/>
+        <CustomGameOverModal showModal={gameOver} handleModalClose={handleGameOverModalClose}/>
+        <CustomLeaveModal showModal={leaveModal} handleModalClose={handleLeaveModalClose} handleLeave={handleLeave}/>
         <CustomAnswerModal correctAnswer={correctAnswer} selectedAnswer={selectedAnswer} showModal={questionOver} handleModalClose={() => {}}/>
         {gameOver &&
           <Confetti

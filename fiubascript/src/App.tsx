@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Login } from './screens/login/Login';
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -26,14 +25,16 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/game" element={<GameScreen />} />
             <Route path="/tienda" element={<Tienda />} />
-            <Route path="/*" element={<>Page not found :(</>} />
+            <Route path="/*" element={<Navigate to='/' />} />
+            {/* <Route path="/*" element={<>Page not found :(</>} /> */}
           </>
           :
           <>
             <Route path="/" element={<Landing />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/*" element={<>Page not found :(</>} />
+            <Route path="/*" element={<Navigate to='/' />} />
+            {/* <Route path="/*" element={<>Page not found :(</>} /> */}
           </>
 
         }

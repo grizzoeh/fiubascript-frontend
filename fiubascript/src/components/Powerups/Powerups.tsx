@@ -66,7 +66,7 @@ export const Powerups = ({onAddTime, onDeleteOptions, onChangeQuestion, powerupU
           <div className={timeDisabled ? 'powerup-button-text-disabled' : 'powerup-button-text'}>+10 segundos</div>
           <div className='powerup-button-side-container'>
             <img className='powerup-button-price-icon' src={timeDisabled ? coinDisabled : coin} alt={'title'} />
-            <div className={timeDisabled ? 'powerup-button-price-text-disabled' : 'powerup-button-price-text'}>{POWERUP_PRICES.addTime}</div>
+            <div className={timeDisabled ? powerupUsed ? 'powerup-button-price-text-disabled' : 'powerup-button-price-text-error' : 'powerup-button-price-text'}>{POWERUP_PRICES.addTime}</div>
           </div>
         </div>
       </button>
@@ -76,7 +76,7 @@ export const Powerups = ({onAddTime, onDeleteOptions, onChangeQuestion, powerupU
           <div className={deleteDisabled ? 'powerup-button-text-disabled' : 'powerup-button-text'}>Eliminar 2 opciones</div>
           <div className='powerup-button-side-container'>
             <img className='powerup-button-price-icon' src={deleteDisabled ? coinDisabled : coin} alt={'title'} />
-            <div className={deleteDisabled ? 'powerup-button-price-text-disabled' : 'powerup-button-price-text'}>{POWERUP_PRICES.deleteOptions}</div>
+            <div className={deleteDisabled ? powerupUsed ? 'powerup-button-price-text-disabled' : 'powerup-button-price-text-error' : 'powerup-button-price-text'}>{POWERUP_PRICES.deleteOptions}</div>
           </div>
         </div>
       </button>
@@ -86,7 +86,7 @@ export const Powerups = ({onAddTime, onDeleteOptions, onChangeQuestion, powerupU
           <div className={changeDisabled ? 'powerup-button-text-disabled' : 'powerup-button-text'}>Cambiar pregunta</div>
           <div className='powerup-button-side-container'>
             <img className='powerup-button-price-icon' src={changeDisabled ? coinDisabled : coin} alt={'title'} />
-            <div className={changeDisabled ? 'powerup-button-price-text-disabled' : 'powerup-button-price-text'}>{POWERUP_PRICES.changeQuestion}</div>
+            <div className={changeDisabled ? powerupUsed ? 'powerup-button-price-text-disabled' : 'powerup-button-price-text-error' : 'powerup-button-price-text'}>{POWERUP_PRICES.changeQuestion}</div>
           </div>
         </div>
       </button>

@@ -14,6 +14,9 @@ import { Avatar } from '../../components/Avatar/Avatar'
 import useUser from '../../hooks/useUser'
 import { ADD_TIME_POWERUP } from '../../constants/constants'
 import { CustomAnswerModal } from '../../components/CustomModal/CustomAnswerModal'
+import { CustomLeaveModal } from '../../components/CustomModal/CustomLeaveModal'
+import { CORRECT_ANSWER_PRICE, POWERUP_PRICES } from '../../constants/prices'
+import { addCoins, reduceCoins } from '../../services/coinService'
 
 type IAQuestions = {
   "pregunta": string,
@@ -33,7 +36,9 @@ export const GameScreen = () => {
   const [addTime, setaddTime] = useState(0)
   const [questionOver, setquestionOver] = useState(false)
   const [gameOver, setgameOver] = useState(false)
-  const {userInfo} = useUser()
+  const [leaveModal, setleaveModal] = useState(false)
+  const [correctAnswersCounter, setcorrectAnswersCounter] = useState(0)
+  const {userInfo, setUserInfo} = useUser()
 
   useEffect(() => {
     getQuestionsFromIA().then((aiQuestions: Array<IAQuestions>) => {
@@ -45,39 +50,45 @@ export const GameScreen = () => {
     if(questions){
       if(questions[questionIndex].respuestas[0] === questions[questionIndex].correcta){
         setcorrectAnswer('A')
-        if(selectedAnswer !== 'A') setincorrectAnswer(selectedAnswer)
+        if(selectedAnswer === 'A'){
+          setcorrectAnswersCounter(prevState => prevState + 1)
+        }else{
+          setincorrectAnswer(selectedAnswer)
+        } 
       }
       else if(questions[questionIndex].respuestas[1] === questions[questionIndex].correcta){
         setcorrectAnswer('B')
-        if(selectedAnswer !== 'B') setincorrectAnswer(selectedAnswer)
+        if(selectedAnswer === 'B'){
+          setcorrectAnswersCounter(prevState => prevState + 1)
+        }else{
+          setincorrectAnswer(selectedAnswer)
+        } 
       }
       else if(questions[questionIndex].respuestas[2] === questions[questionIndex].correcta){
         setcorrectAnswer('C')
-        if(selectedAnswer !== 'C') setincorrectAnswer(selectedAnswer)
+        if(selectedAnswer === 'C'){
+          setcorrectAnswersCounter(prevState => prevState + 1)
+        }else{
+          setincorrectAnswer(selectedAnswer)
+        } 
       }
       else if(questions[questionIndex].respuestas[3] === questions[questionIndex].correcta){
         setcorrectAnswer('D')
-        if(selectedAnswer !== 'D') setincorrectAnswer(selectedAnswer)
+        if(selectedAnswer === 'D'){
+          setcorrectAnswersCounter(prevState => prevState + 1)
+        }else{
+          setincorrectAnswer(selectedAnswer)
+        } 
       }
       else{
         setcorrectAnswer('error')
         console.log('AI Error: correct answer not found')
+        setcorrectAnswersCounter(prevState => prevState + 1)
       }
     }
     setquestionOver(true)
   }
-
-  const onFinishShowResultTime = () => {
-    cleanGameScreen()
-    setquestionIndex(prevIndex => prevIndex < 9 ? prevIndex + 1 : prevIndex);
-    // if(questionIndex === 0) {
-    //   setgameOver(true)
-    // }
-    if(questionIndex === 9) {
-      setgameOver(true)
-    }
-  }
-
+  
   const cleanGameScreen = () => {
     setquestionOver(false)
     setselectedAnswer('')
@@ -88,16 +99,41 @@ export const GameScreen = () => {
     setaddTime(0)
   }
 
-  const handleModalClose = () => {
-    navigate('/home')
+  const onFinishShowResultTime = () => {
+    cleanGameScreen()
+    setquestionIndex(prevIndex => prevIndex < 9 ? prevIndex + 1 : prevIndex);
+    // if(questionIndex === 0) {
+    //   setgameOver(true)
+    // }
+    if(questionIndex === 9) {
+      userInfo.id && addCoins(userInfo.id, CORRECT_ANSWER_PRICE * correctAnswersCounter).then(updatedCoins => {
+        setUserInfo({
+          ...userInfo,
+          coins: updatedCoins
+        })
+      });
+      setgameOver(true);
+    }
   }
 
   const onAddTime = () => {
+    userInfo.id && reduceCoins(userInfo.id, POWERUP_PRICES.addTime).then(updatedCoins => {
+      setUserInfo({
+        ...userInfo,
+        coins: updatedCoins
+      })
+    });
     setpowerupUsed(true)
     setaddTime(ADD_TIME_POWERUP)
   }
 
   const onDeleteOptions = () => {
+    userInfo.id && reduceCoins(userInfo.id, POWERUP_PRICES.deleteOptions).then(updatedCoins => {
+      setUserInfo({
+        ...userInfo,
+        coins: updatedCoins
+      })
+    });
     setpowerupUsed(true)
     let discardedCount = 0
     if(questions){
@@ -120,6 +156,12 @@ export const GameScreen = () => {
     }
   }
   const onChangeQuestion = () => {
+    userInfo.id && reduceCoins(userInfo.id, POWERUP_PRICES.changeQuestion).then(updatedCoins => {
+      setUserInfo({
+        ...userInfo,
+        coins: updatedCoins
+      })
+    });
     cleanGameScreen()
     setpowerupUsed(true)
     setgameOver(true)
@@ -134,6 +176,22 @@ export const GameScreen = () => {
     setselectedAnswer(answer)
   }
 
+  const handleLeave = () => {
+    navigate('/home')
+  }
+
+  const handleGameOverModalClose = () => {
+    navigate('/home')
+  }
+  
+  const handleLeaveModalOpen = () => {
+    setleaveModal(true)
+  }
+
+  const handleLeaveModalClose = () => {
+    setleaveModal(false)
+  }
+
   return (
     <BackgroundContainer>
       {questions ? <>
@@ -145,6 +203,7 @@ export const GameScreen = () => {
           addTime={addTime}
           selectedAnswer={selectedAnswer}
           gameOver={gameOver}
+          onLeave={handleLeaveModalOpen}
         />
         <div className='gameScreen-container'>
           <div className='gameScreen-question-container'>
@@ -205,9 +264,9 @@ export const GameScreen = () => {
             </div>
           </div>
         </div>
-        <Avatar currentAvatarIndex={6}/>
-        {/* <Avatar currentAvatarIndex={userInfo.currentCharacter || 0}/> */}
-        <CustomGameOverModal showModal={gameOver} handleModalClose={handleModalClose}/>
+        <Avatar currentAvatarIndex={userInfo.currentCharacter || 0}/>
+        <CustomGameOverModal showModal={gameOver} handleModalClose={handleGameOverModalClose} correctAnswers={correctAnswersCounter}/>
+        <CustomLeaveModal showModal={leaveModal} handleModalClose={handleLeaveModalClose} handleLeave={handleLeave}/>
         <CustomAnswerModal correctAnswer={correctAnswer} selectedAnswer={selectedAnswer} showModal={questionOver} handleModalClose={() => {}}/>
         {gameOver &&
           <Confetti

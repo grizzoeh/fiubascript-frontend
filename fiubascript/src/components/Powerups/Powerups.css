@@ -47,6 +47,11 @@
   color: gray
 }
 
+.powerup-button-price-text-error{
+  font-size: 1rem;
+  color: var(--error)
+}
+
 .powerup-button-price-icon{
   height: 1.5rem;
   margin-right: 1rem;

@@ -5,3 +5,19 @@
 .custom-modal-header-error{
   background-color: var(--error);
 }
+
+.custom-modal-button-error{
+  background-color: var(--error);
+}
+
+.custom-modal-coin{
+  height: 1.5rem;
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+
+.custom-modal-coin-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

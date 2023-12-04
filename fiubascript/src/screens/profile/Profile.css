@@ -1,0 +1,67 @@
+.container-profile {
+    background: #C8E9F021;
+    border-radius: 23px;
+    width: 750px;
+    height: 500px;
+    position: fixed;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999; 
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: fixed;
+  }
+  
+  .profile-title {
+    color: #37CAEC;
+    text-align: center;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 162.523%;
+  }
+  
+  .grid-container {
+    display: grid;
+  grid-template-columns: repeat(3, max-content);
+  gap: 10px; 
+  grid-template-rows: repeat(2, auto); 
+  margin-bottom: 15px; 
+  grid-template-columns: repeat(2, minmax(200px, 1fr));
+  }
+
+  .number{
+    margin-left: 15px;
+    margin-top: 15px;
+    color: white;
+    text-align: center;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  .profile-letters{
+    color: #FFF;
+    text-align: center;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 162.523%;
+    margin-right: 10px;
+  }
+
+  .avatar-image{
+    width: 120px;
+    margin-left: 40px;
+  }
+
+.coin-and-number {
+    display: flex;
+    align-items: center;
+    margin-left: 60px;
+}

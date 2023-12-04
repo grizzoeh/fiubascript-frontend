@@ -6,14 +6,12 @@ import Coin from '../../assets/coin.png';
 import './Navbar.css';
 import { ComboBox } from '../ComboBox/ComboBox';
 import useUser from '../../hooks/useUser';
-import { ProfileContainer } from '../ProfileContainer/ProfileContainer';
 import { useNavigate } from 'react-router-dom';
 
 export const Navbar = () => {
   const navigate = useNavigate();
   const { userInfo } = useUser();
   const [showComboBox, setShowComboBox] = useState(false);
-  const [showProfile, setShowProfile] = useState(false);
 
   const handleUserLogoClick = () => {
     setShowComboBox((prev) => !prev);
@@ -23,10 +21,9 @@ export const Navbar = () => {
     navigate('/home'); 
   };
 
-
   const handleComboBoxSelect = (value: string) => {
     if (value === 'Perfil') {
-      setShowProfile(true);
+     navigate('/profile'); 
     } else if (value === 'Cerrar Sesión') {
       console.log('Cerrar Sesión');
     }
@@ -35,21 +32,22 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="navbar">
-      <div className="nav-item">
-        <img src={triviaTitle} alt="TrivIA Title" className="nav-logo" onClick={handleOnClickTrivia}/>
-      </div>
-      <div className="nav-item">
-        <img src={Coin} alt="Coin" className="nav-icon" />
-        <p className="number">{userInfo.coins || 0}</p>
-      </div>
-      <div className="nav-item">
-        <UserLogo onClick={handleUserLogoClick} />
-        {showComboBox && (
-          <ComboBox options={['Perfil', 'Cerrar Sesión']} onSelect={handleComboBoxSelect} />
-        )}
-        {showProfile && <ProfileContainer onClose={() => setShowProfile(false)} />}
-      </div>
-    </nav>
+    <>
+      <nav className="navbar">
+        <div className="nav-item">
+          <img src={triviaTitle} alt="TrivIA Title" className="nav-logo" onClick={handleOnClickTrivia}/>
+        </div>
+        <div className="nav-item">
+          <img src={Coin} alt="Coin" className="nav-icon" />
+          <p className="number">{userInfo.coins || 0}</p>
+        </div>
+        <div className="nav-item">
+          <UserLogo onClick={handleUserLogoClick} />
+          {showComboBox && (
+            <ComboBox options={['Perfil', 'Cerrar Sesión']} onSelect={handleComboBoxSelect} />
+          )}
+        </div>
+      </nav>
+    </>
   );
 };

@@ -9,6 +9,7 @@ import './Home.css';
 import { useNavigate } from 'react-router-dom';
 import { Modal, Button } from 'react-bootstrap';
 import Coin from '../../assets/coin.png';
+import { Navbar } from '../../components/Navbar/Navbar';
 
 
 
@@ -52,10 +53,7 @@ export const Home = () => {
   
     return(
         <BackgroundContainer>
-        <UserLogo></UserLogo>
-        <div className="centered-image">
-        <img src={triviaTitle} alt="TrivIA Title" className="title-trivia" />
-        </div>
+        <Navbar></Navbar>
         <div className="centered-content">
         <div className="button-row">
         <HomeButton title="Jugar" imageSrc={Jugar}  onClick={handleButtonJugarClick}></HomeButton>

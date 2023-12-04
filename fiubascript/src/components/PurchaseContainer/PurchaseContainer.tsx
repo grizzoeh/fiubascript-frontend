@@ -11,6 +11,7 @@ type PurchaseContainerProps = {
 };
 
 export const PurchaseContainer = ({ randomNumber, imageSrc, onClose }: PurchaseContainerProps) => {
+  console.log('img', imageSrc);
   return (
     <div>
         <button className="close-button" onClick={onClose}>

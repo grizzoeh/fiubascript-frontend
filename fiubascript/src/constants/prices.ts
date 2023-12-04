@@ -1,4 +1,4 @@
-export const CHARACTER_PRICES = {
+export const CHARACTER_PRICES: Record<number, number> = {
   0: 0,
   1: 200,
   2: 275,

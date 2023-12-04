@@ -33,6 +33,8 @@ function App() {
             <Route path="/" element={<Landing />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/tienda" element={<Tienda />} />
             <Route path="/*" element={<>Page not found :(</>} />
           </>
 

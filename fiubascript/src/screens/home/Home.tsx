@@ -10,11 +10,14 @@ import { useNavigate } from 'react-router-dom';
 import { Modal, Button } from 'react-bootstrap';
 import Coin from '../../assets/coin.png';
 import { Navbar } from '../../components/Navbar/Navbar';
+import { Avatar } from '../../components/Avatar/Avatar';
+import useUser from '../../hooks/useUser';
 
 
 
 export const Home = () => {
     const navigate = useNavigate();
+    const {userInfo, setUserInfo} = useUser()
     const [showPopup, setShowPopup] = useState<boolean>(false);
     const handleButtonJugarClick = () => {
         navigate('/game'); 
@@ -83,6 +86,7 @@ export const Home = () => {
           </Button>
           </div>
       </Modal>
+      <Avatar currentAvatarIndex={userInfo.currentCharacter || 0} isHome={true}/>
         </BackgroundContainer>
     )
 }

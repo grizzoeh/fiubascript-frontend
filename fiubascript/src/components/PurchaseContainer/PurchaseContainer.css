@@ -20,8 +20,8 @@
 
 .close-button {
     position: fixed;
-    top: 80px; /* Ajusta la posición vertical según sea necesario */
-    right: 370px; /* Ajusta la posición horizontal según sea necesario */
+    top: 150px; 
+    right: 500px; 
     background: none;
     border: none;
     cursor: pointer;
@@ -30,7 +30,7 @@
   }
   
   .close {
-    width: 20px; /* Ajusta el tamaño según sea necesario */
+    width: 20px; 
     height: 20px;
   }
 

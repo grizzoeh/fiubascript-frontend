@@ -16,16 +16,23 @@ export const Profile = () => {
         <div className="title-container">
             <p className="profile-title">Perfil</p>
         </div>
-        <div className="grid-container">
+        <div className="grid-profile-container">
         <p className="profile-letters">Nombre</p>
-        <p className="profile-letters">Mateo</p>
+        <p className="profile-letters">{userInfo.firstName || 0} {userInfo.lastName || 0}</p>
         <p className="profile-letters">Tus monedas</p>
-        <div className="coin-and-number">
+        <div className="coin-and-number-profile">
               <img src={Coin} alt="Coin" className="coin" />
               <p className="number">{userInfo.coins || 0}</p>
         </div>
         <p className="profile-letters">Tu avatar</p>
-        <img src={require(`../../assets/skins/image ${userInfo.currentCharacter || 0}.png`)} alt={`avatar`} className="avatar-image" />
+        <div className="avatar-container">
+              <img
+                src={require(`../../assets/skins/image ${userInfo.currentCharacter || 0}.png`)}
+                alt={`avatar`}
+                className="avatar-image"
+              />
+              <p className="avatar-text-profile">Cambiar</p>
+            </div>
         </div>
       </div>
       </div>

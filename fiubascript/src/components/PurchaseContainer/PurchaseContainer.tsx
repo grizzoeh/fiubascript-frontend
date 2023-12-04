@@ -1,17 +1,38 @@
-import React from 'react';
+import React, { useState }  from 'react';
 import './PurchaseContainer.css';
 import Cruz from '../../assets/Cruz.png';
 import Coin from '../../assets/coin.png';
+import { reduceCoins } from '../../services/coinService';
+import useUser from '../../hooks/useUser';
+import { CustomPurchaseModal } from '../CustomModal/CustomPurchaseModal';
 
 
 type PurchaseContainerProps = {
   randomNumber: number;
   imageSrc: string;
-  onClose: () => void; // Agrega la función onClose
+  onClose: () => void; 
 };
 
 export const PurchaseContainer = ({ randomNumber, imageSrc, onClose }: PurchaseContainerProps) => {
-  console.log('img', imageSrc);
+  const {userInfo, setUserInfo} = useUser();
+  const [showModal, setShowModal] = useState(false);
+
+  const handleAceptarCompra = () => {
+    if(userInfo.coins != null){
+      if(userInfo.coins > randomNumber){
+        userInfo.id && reduceCoins(userInfo.id, randomNumber).then(updatedCoins => {
+          setUserInfo({
+            ...userInfo,
+            coins: updatedCoins
+          })
+        });
+      } else {
+        setShowModal(true);
+      }
+    }
+    
+    
+  }
   return (
     <div>
         <button className="close-button" onClick={onClose}>
@@ -25,9 +46,12 @@ export const PurchaseContainer = ({ randomNumber, imageSrc, onClose }: PurchaseC
         <p className="number">{randomNumber}</p>
         </div>
         <div className="grid-container">
-        <button className="aceptar" onClick={onClose}>Aceptar</button>
+        <button className="aceptar" onClick={handleAceptarCompra}>Aceptar</button>
         <button className="cancelar" onClick={onClose}>Cancelar</button>
         </div>
+    </div>
+    <div>
+      {showModal && <CustomPurchaseModal onClose={() => setShowModal(false)} />}
     </div>
     </div>
   );

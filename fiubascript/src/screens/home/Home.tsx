@@ -12,6 +12,7 @@ import Coin from '../../assets/coin.png';
 import { Navbar } from '../../components/Navbar/Navbar';
 import { Avatar } from '../../components/Avatar/Avatar';
 import useUser from '../../hooks/useUser';
+import { addCoins } from '../../services/coinService';
 
 
 
@@ -48,6 +49,11 @@ export const Home = () => {
       }, []);
     
       const handlePopupClose = () => {
+        userInfo.id &&  addCoins(userInfo.id, randomCoinNumber).then(updatedCoins => {
+          setUserInfo({
+            ...userInfo,
+            coins: updatedCoins
+          })});
         setShowPopup(false);
       };
 

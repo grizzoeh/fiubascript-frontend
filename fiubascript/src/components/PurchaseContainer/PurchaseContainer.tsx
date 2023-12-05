@@ -1,4 +1,4 @@
-import React, { useState }  from 'react';
+import React, { useState,useEffect }  from 'react';
 import './PurchaseContainer.css';
 import Cruz from '../../assets/Cruz.png';
 import Coin from '../../assets/coin.png';
@@ -16,6 +16,11 @@ type PurchaseContainerProps = {
 
 export const PurchaseContainer = ({ randomNumber, imageSrc, onClose, characterId }: PurchaseContainerProps) => {
   const {userInfo, setUserInfo} = useUser();
+  const [isAcceptButtonDisabled, setIsAcceptButtonDisabled] = useState(false);
+
+  useEffect(() => {
+    setIsAcceptButtonDisabled(userInfo.coins !== null && userInfo.coins < randomNumber);
+  }, [userInfo.coins, randomNumber]);
 
   const handleAceptarCompra = () => {
       userInfo.id && buyCharacter(characterId, randomNumber,userInfo.id).then(updatedCoins => {
@@ -40,7 +45,7 @@ export const PurchaseContainer = ({ randomNumber, imageSrc, onClose, characterId
         <p className="number">{randomNumber}</p>
         </div>
         <div className="grid-container">
-        <button className="aceptar" onClick={handleAceptarCompra}>Aceptar</button>
+        <button className="aceptar" onClick={handleAceptarCompra} disabled={isAcceptButtonDisabled}>Aceptar</button>
         <button className="cancelar" onClick={onClose}>Cancelar</button>
         </div>
     </div>

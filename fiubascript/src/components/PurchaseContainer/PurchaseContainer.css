@@ -84,3 +84,7 @@
     background: #46A824;
   }
 
+  .aceptar:disabled {
+    background: #7f7f7f;
+    cursor: not-allowed; 
+  }

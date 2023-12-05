@@ -2,7 +2,7 @@ import React, { useState }  from 'react';
 import './PurchaseContainer.css';
 import Cruz from '../../assets/Cruz.png';
 import Coin from '../../assets/coin.png';
-import { reduceCoins } from '../../services/coinService';
+import { buyCharacter } from '../../services/charactersService';
 import useUser from '../../hooks/useUser';
 import { CustomPurchaseModal } from '../CustomModal/CustomPurchaseModal';
 
@@ -11,27 +11,21 @@ type PurchaseContainerProps = {
   randomNumber: number;
   imageSrc: string;
   onClose: () => void; 
+  characterId: number;
 };
 
-export const PurchaseContainer = ({ randomNumber, imageSrc, onClose }: PurchaseContainerProps) => {
+export const PurchaseContainer = ({ randomNumber, imageSrc, onClose, characterId }: PurchaseContainerProps) => {
   const {userInfo, setUserInfo} = useUser();
-  const [showModal, setShowModal] = useState(false);
 
   const handleAceptarCompra = () => {
-    if(userInfo.coins != null){
-      if(userInfo.coins > randomNumber){
-        userInfo.id && reduceCoins(userInfo.id, randomNumber).then(updatedCoins => {
-          setUserInfo({
-            ...userInfo,
-            coins: updatedCoins
-          })
-        });
-      } else {
-        setShowModal(true);
-      }
-    }
-    
-    
+      userInfo.id && buyCharacter(characterId, randomNumber,userInfo.id).then(updatedCoins => {
+        setUserInfo({
+          ...userInfo,
+          coins: updatedCoins
+        })
+      });
+      onClose();
+        
   }
   return (
     <div>
@@ -51,7 +45,6 @@ export const PurchaseContainer = ({ randomNumber, imageSrc, onClose }: PurchaseC
         </div>
     </div>
     <div>
-      {showModal && <CustomPurchaseModal onClose={() => setShowModal(false)} />}
     </div>
     </div>
   );

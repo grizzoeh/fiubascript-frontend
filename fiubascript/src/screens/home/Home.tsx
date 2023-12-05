@@ -62,7 +62,7 @@ export const Home = () => {
   
     return(
         <BackgroundContainer>
-        <Navbar></Navbar>
+        <Navbar hasBackButton={false}/>
         <div className="centered-content">
         <div className="button-row">
         <HomeButton title="Jugar" imageSrc={Jugar}  onClick={handleButtonJugarClick}></HomeButton>

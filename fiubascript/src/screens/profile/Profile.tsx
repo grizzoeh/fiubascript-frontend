@@ -21,7 +21,7 @@ export const Profile = () => {
 
   return (
     <BackgroundContainer>
-      <Navbar></Navbar>
+      <Navbar hasBackButton={true} />
       <div>
         <div className="container-profile">
           <div className="title-container">

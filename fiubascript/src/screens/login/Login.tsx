@@ -3,17 +3,19 @@ import useUser from "../../hooks/useUser";
 import { useNavigate } from "react-router-dom";
 import { BackgroundContainer } from "../../components/BackgroundContainer/BackgroundContainer";
 import triviaTitle from '../../assets/TrivIA.png';
+import { Loader } from "../../components/Loader/Loader";
 
 export const Login = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const { userInfo, setUserInfo } = useUser();
+    const [loading , setLoading] = useState(false);
 
     // const history = useHistory();
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        console.log("Email: ", email);
+        setLoading(true);
         e.preventDefault();
         try{
             const response = await fetch("https://fiubascript-backend.onrender.com/auth/login", {
@@ -38,10 +40,11 @@ export const Login = () => {
                 });
 
                 navigate("/home");
+                setLoading(false);
             }
             else {
-                // Login failed, display error message
                 alert("Wrong password.");
+                setLoading(false);
             }
         } catch (error) {
         console.error(error);
@@ -52,6 +55,9 @@ export const Login = () => {
 
     return (
         <BackgroundContainer>
+        {
+            loading && <Loader />
+        }
         <div className="centered-image mb-5">
             <img src={triviaTitle} alt="TrivIA Title" />
         </div>

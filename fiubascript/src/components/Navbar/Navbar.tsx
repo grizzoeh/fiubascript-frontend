@@ -7,8 +7,13 @@ import './Navbar.css';
 import { ComboBox } from '../ComboBox/ComboBox';
 import useUser from '../../hooks/useUser';
 import { useNavigate } from 'react-router-dom';
+import BackArrow from '../../assets/BackArrow.png';
 
-export const Navbar = () => {
+interface NavbarProps {
+  hasBackButton?: boolean;
+}
+
+export const Navbar = ({hasBackButton}: NavbarProps) => {
   const navigate = useNavigate();
   const { userInfo,setUserInfo } = useUser();
   const [showComboBox, setShowComboBox] = useState(false);
@@ -41,9 +46,19 @@ export const Navbar = () => {
     setShowComboBox(false);
   };
 
+  const onBack = () => {
+    navigate('/home');
+  }
+
   return (
     <>
       <nav className="navbar">
+        {hasBackButton && (
+      <div className='navbar-item'>
+        <img className='gameHeader-arrow' src={BackArrow} alt={'back'} onClick={onBack}/>
+        <img className='gameHeader-logo' src={triviaTitle} alt={'title'} />
+      </div>
+    )}
         <div className="nav-item">
           <img src={triviaTitle} alt="TrivIA Title" className="nav-logo" onClick={handleOnClickTrivia}/>
         </div>

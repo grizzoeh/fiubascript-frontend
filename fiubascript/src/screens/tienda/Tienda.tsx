@@ -43,7 +43,7 @@ const importImages = () => {
 
   return (
     <BackgroundContainer>
-      <Navbar></Navbar>
+      <Navbar hasBackButton={true} />
       <div className="image-gallery-container">
         <div className="title-container">
           <p className="title">Tienda</p>

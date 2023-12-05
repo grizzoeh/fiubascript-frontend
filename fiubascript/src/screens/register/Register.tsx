@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BackgroundContainer } from "../../components/BackgroundContainer/BackgroundContainer";
 import triviaTitle from '../../assets/TrivIA.png';
+import { Loader } from "../../components/Loader/Loader";
 
 export const Register = () => {
     const navigate = useNavigate();
@@ -11,6 +12,7 @@ export const Register = () => {
     const [lastName, setLastName] = useState("");
     const [repeatPassword, setRepeatPassword] = useState('');
     const [passwordsMatch, setPasswordsMatch] = useState(true);
+    const [loading , setLoading] = useState(false);
 
 
     function handlePasswordChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -26,7 +28,7 @@ export const Register = () => {
     // const history = useHistory();
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        console.log("vars are: ", name, lastName, email, password, repeatPassword);
+        setLoading(true);
         event.preventDefault();
         if (!passwordsMatch) {
         return;
@@ -42,10 +44,12 @@ export const Register = () => {
         if (response.ok) {
             // Registration successful, redirect to login page
             navigate('/login');
+            setLoading(false);
         } else {
             // Registration failed, display error message
             const data = await response.json();
             alert(data.message);
+            
         }
         } catch (error) {
         console.error(error);
@@ -56,6 +60,9 @@ export const Register = () => {
 
     return (
         <BackgroundContainer>
+        {
+            loading && <Loader />
+        }
         <div className="centered-image mb-3" style={{marginTop: '1rem'}}>
             <img src={triviaTitle} alt="TrivIA Title" />
         </div>

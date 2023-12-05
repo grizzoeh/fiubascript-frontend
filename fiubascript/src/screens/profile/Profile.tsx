@@ -10,7 +10,7 @@ export const Profile = () => {
     const { userInfo } = useUser();
     return (
       <BackgroundContainer>
-      <Navbar></Navbar>
+      <Navbar hasBackButton={true} />
       <div>
       <div className="container-profile">
         <div className="title-container">

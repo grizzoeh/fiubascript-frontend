@@ -4,12 +4,20 @@ import { PurchaseContainer } from '../../components/PurchaseContainer/PurchaseCo
 import Coin from '../../assets/coin.png';
 import './Tienda.css';
 import { Navbar } from '../../components/Navbar/Navbar';
-import { CHARACTER_PRICES } from '../../constants/prices'
+import { CHARACTER_PRICES } from '../../constants/prices';
+
 
 
 const importImages = () => {
   const images = require.context('../../assets/skins', false, /\.(png|jpe?g|svg)$/);
   const imagePaths: string[] = images.keys().map(images) as string[];
+
+  // Ordenar las imágenes según el valor de x en "imagen x"
+  imagePaths.sort((a, b) => {
+    const indexA = parseInt(a.match(/\d+/)![0], 10);
+    const indexB = parseInt(b.match(/\d+/)![0], 10);
+    return indexA - indexB;
+  });
 
   return { imagePaths };
 };
@@ -23,6 +31,7 @@ const importImages = () => {
   });
 
   const handleSkinClick = (characterId: number) => {
+    console.log(characterId);
     const randomNumber = CHARACTER_PRICES[characterId];
     setSelectedSkin({ characterId, randomNumber });
     setShowPurchaseContainer(true);
@@ -58,6 +67,7 @@ const importImages = () => {
             randomNumber={selectedSkin.randomNumber}
             imageSrc={imagePaths[selectedSkin.characterId]}
             onClose={handleClose}
+            characterId={selectedSkin.characterId}
           />
         )}
       </div>

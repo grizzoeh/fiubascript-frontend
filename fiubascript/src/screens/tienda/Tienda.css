@@ -1,7 +1,7 @@
 .image-gallery-container {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(3, minmax(200px, 1fr)); /* Cambiamos a 3 columnas */
+  grid-template-columns: repeat(3, minmax(200px, 1fr));
   gap: 10px;
   max-height: 500px;
   overflow-y: auto;
@@ -9,12 +9,12 @@
   background: rgba(200, 233, 240, 0.13);
   width: 750px;
   margin: auto;
-  grid-template-rows: auto auto; /* Dos filas en la cuadrícula */
+  grid-template-rows: auto auto;
 }
 
 .title-container {
   grid-row: 1;
-  grid-column: span 3; /* Asignamos el título a las 3 columnas */
+  grid-column: span 3;
   text-align: center;
 }
 
@@ -34,7 +34,7 @@
 
 
 .skins:hover {
-  transform: scale(1.1); /* Ajusta el valor según sea necesario para el zoom al hacer hover */
+  transform: scale(1.1);
 }
 
 .image-gallery-container::-webkit-scrollbar {
@@ -44,12 +44,12 @@
 }
 
 .image-gallery-container::-webkit-scrollbar-thumb {
-  background: #C8E9F0; /* (la parte móvil) */
+  background: #C8E9F0;
   border-radius: 18px; 
 }
 
 .image-gallery-container::-webkit-scrollbar-track {
-  background-color: transparent; /* (la parte fija) */
+  background-color: transparent;
 }
 
 .image-with-coin{

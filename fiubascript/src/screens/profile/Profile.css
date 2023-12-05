@@ -57,13 +57,13 @@
 
   .avatar-image{
     width: 120px;
-    margin-right: 60px;
+    margin-right: 100px;
   }
 
 .coin-and-number-profile {
     display: flex;
     align-items: center;
-    margin-left: 110px;
+    margin-left: 35px;
 }
 
 .avatar-container {
@@ -80,7 +80,7 @@
     font-weight: 500;
     line-height: normal;
     text-decoration-line: underline;
-    margin-right: 50px;
+    margin-right: 95px;
     background-color: transparent;
     padding: 0px;
   }

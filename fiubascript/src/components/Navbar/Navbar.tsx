@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 
 export const Navbar = () => {
   const navigate = useNavigate();
-  const { userInfo } = useUser();
+  const { userInfo,setUserInfo } = useUser();
   const [showComboBox, setShowComboBox] = useState(false);
 
   const handleUserLogoClick = () => {
@@ -25,7 +25,17 @@ export const Navbar = () => {
     if (value === 'Perfil') {
      navigate('/profile'); 
     } else if (value === 'Cerrar Sesión') {
-      console.log('Cerrar Sesión');
+      userInfo.id && setUserInfo({
+        token: null,
+        id: null,
+        firstName: null,
+        lastName: null,
+        email: null,
+        coins: null,
+        characters: null,
+        currentCharacter: null
+      });
+      navigate('/login');
     }
 
     setShowComboBox(false);

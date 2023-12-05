@@ -24,7 +24,7 @@ export const buyCharacter = async (characterId: number, cost: number,userId : st
 
   export const updateCharacters = async (userId : string, characterId: number) => {
     try{
-      const response = await fetch("https://fiubascript-backend.onrender.com/marketplace/buy", {
+      const response = await fetch("https://fiubascript-backend.onrender.com/users/characters", {
           method: "POST",
           headers: {
               "Content-Type": "application/json"
@@ -34,7 +34,7 @@ export const buyCharacter = async (characterId: number, cost: number,userId : st
       if (response.ok) {
         const data = await response.json();
         console.log("Data: ",data);
-        return data
+        return data.currentCharacter
       }
       else {
         alert("Error updating character");

@@ -10,13 +10,16 @@ type UserCharactersProps = {
 };
 
 export const UserCharacters: React.FC<UserCharactersProps> = ({ onClose }) => {
-    const { userInfo } = useUser();
+    const { userInfo,setUserInfo } = useUser();
 
     const handleSkinClick = (characterId: number) => {
-        userInfo.id && updateCharacters(userInfo.id,characterId).then(response => {
-            onClose();
+        userInfo.id && updateCharacters(userInfo.id,characterId).then(updateCharacters => {
+            setUserInfo({
+                ...userInfo,
+                currentCharacter: updateCharacters
+              })
           });
-            
+        onClose();
     };
 
   if (!userInfo || !userInfo.characters || userInfo.characters.length === 0) {

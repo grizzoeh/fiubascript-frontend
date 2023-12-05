@@ -8,6 +8,7 @@
 
   .user-logo-container {
     display: inline-block;
+    cursor: pointer;
   }
   .dropdown-menu {
     position: absolute;

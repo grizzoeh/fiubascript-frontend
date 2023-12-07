@@ -56,12 +56,10 @@ export const Navbar = ({hasBackButton}: NavbarProps) => {
         {hasBackButton && (
       <div className='navbar-item'>
         <img className='gameHeader-arrow' src={BackArrow} alt={'back'} onClick={onBack}/>
-        <img className='gameHeader-logo' src={triviaTitle} alt={'title'} />
+        <img src={triviaTitle} alt="TrivIA Title" className="nav-logo" onClick={handleOnClickTrivia}/>
       </div>
     )}
-        <div className="nav-item">
-          <img src={triviaTitle} alt="TrivIA Title" className="nav-logo" onClick={handleOnClickTrivia}/>
-        </div>
+        
         <div className="nav-item">
           <img src={Coin} alt="Coin" className="nav-icon" />
           <p className="number">{userInfo.coins || 0}</p>

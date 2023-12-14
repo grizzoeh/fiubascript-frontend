@@ -12,17 +12,18 @@
   }
 
   .button-row {
+    margin-top: 7%;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
   .user-image{
-      position: absolute;
-      top: 0;
-      right: 0;
-      margin: 10px;
-      width: 60px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    width: 60px;
   }
 
   .title-trivia{

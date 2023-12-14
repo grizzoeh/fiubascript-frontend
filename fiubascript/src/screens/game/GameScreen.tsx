@@ -107,7 +107,7 @@ export const GameScreen = () => {
     // }
     if(questionIndex === 9) {
       userInfo.id && addCoins(userInfo.id, CORRECT_ANSWER_PRICE * correctAnswersCounter).then(updatedCoins => {
-        setUserInfo({
+        updatedCoins != null && setUserInfo({
           ...userInfo,
           coins: updatedCoins
         })
@@ -118,7 +118,7 @@ export const GameScreen = () => {
 
   const onAddTime = () => {
     userInfo.id && reduceCoins(userInfo.id, POWERUP_PRICES.addTime).then(updatedCoins => {
-      setUserInfo({
+      updatedCoins != null && setUserInfo({
         ...userInfo,
         coins: updatedCoins
       })
@@ -129,7 +129,7 @@ export const GameScreen = () => {
 
   const onDeleteOptions = () => {
     userInfo.id && reduceCoins(userInfo.id, POWERUP_PRICES.deleteOptions).then(updatedCoins => {
-      setUserInfo({
+      updatedCoins != null && setUserInfo({
         ...userInfo,
         coins: updatedCoins
       })
@@ -157,7 +157,7 @@ export const GameScreen = () => {
   }
   const onChangeQuestion = () => {
     userInfo.id && reduceCoins(userInfo.id, POWERUP_PRICES.changeQuestion).then(updatedCoins => {
-      setUserInfo({
+      updatedCoins != null && setUserInfo({
         ...userInfo,
         coins: updatedCoins
       })

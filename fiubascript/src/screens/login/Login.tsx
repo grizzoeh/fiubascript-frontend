@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { BackgroundContainer } from "../../components/BackgroundContainer/BackgroundContainer";
 import triviaTitle from '../../assets/TrivIA.png';
 import { Loader } from "../../components/Loader/Loader";
+import { LoginResponse } from "../../interfaces/userSessionInterface";
 
 export const Login = () => {
     const navigate = useNavigate();
@@ -25,7 +26,7 @@ export const Login = () => {
                 },
                 body: JSON.stringify({ email, password })
             });
-            const data = await response.json();
+            const data = await response.json() as LoginResponse;
             console.log("Data: ",data);
             if (response.ok) {
                 setUserInfo({
@@ -47,9 +48,9 @@ export const Login = () => {
                 setLoading(false);
             }
         } catch (error) {
-        console.error(error);
-        alert('Wrong password.');
-        
+            console.error(error);
+            alert('Wrong password.');
+            setLoading(false);
         }
     }
 

@@ -4,7 +4,7 @@ import { HomeButton } from '../../components/HomeButton/HomeButton'
 import triviaTitle from '../../assets/TrivIA.png';
 import Ingresar from '../../assets/Ingresar.png';
 import Registrarse from '../../assets/Registrarse.png';
-import './Home.css';
+import '../home/Home.css';
 import { useNavigate } from 'react-router-dom';
 
 export const Landing = () => {

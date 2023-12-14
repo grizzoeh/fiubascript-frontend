@@ -1,3 +1,5 @@
+import { CoinsResponse } from "../interfaces/coinInterface";
+
 export const addCoins = async (userId : string, coins : number) => {
   try{
     const response = await fetch("https://fiubascript-backend.onrender.com/users/sum-coins", {
@@ -8,7 +10,7 @@ export const addCoins = async (userId : string, coins : number) => {
         body: JSON.stringify({ userId, coins })
     });
     if (response.ok) {
-      const data = await response.json();
+      const data = await response.json() as CoinsResponse;
       console.log("Data: ",data);
       return data.coins
     }
@@ -31,7 +33,7 @@ export const reduceCoins = async (userId : string, coins : number) => {
         body: JSON.stringify({ userId, coins })
     });
     if (response.ok) {
-      const data = await response.json();
+      const data = await response.json() as CoinsResponse;
       console.log("Data: ",data);
       return data.coins
     }

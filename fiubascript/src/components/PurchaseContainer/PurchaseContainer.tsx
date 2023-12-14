@@ -2,9 +2,10 @@ import React, { useState,useEffect }  from 'react';
 import './PurchaseContainer.css';
 import Cruz from '../../assets/Cruz.png';
 import Coin from '../../assets/coin.png';
-import { buyCharacter } from '../../services/charactersService';
+import { buyCharacter,updateCharacters } from '../../services/charactersService';
 import useUser from '../../hooks/useUser';
 import { CustomPurchaseModal } from '../CustomModal/CustomPurchaseModal';
+import { addCoins, reduceCoins } from '../../services/coinService'
 
 
 type PurchaseContainerProps = {
@@ -26,8 +27,17 @@ export const PurchaseContainer = ({ randomNumber, imageSrc, onClose, characterId
       userInfo.id && buyCharacter(characterId, randomNumber,userInfo.id).then(updatedCoins => {
         setUserInfo({
           ...userInfo,
-          coins: updatedCoins
+          coins: updatedCoins,
         })
+      });
+      userInfo.id && updateCharacters(userInfo.id,characterId).then(updateCharacters => {
+        setUserInfo({
+            ...userInfo,
+            currentCharacter: updateCharacters,
+            characters: userInfo.characters !== null
+            ? userInfo.characters.concat(updateCharacters)
+            : [updateCharacters] ,
+          })
       });
       onClose();
         

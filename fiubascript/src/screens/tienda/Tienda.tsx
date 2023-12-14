@@ -12,7 +12,6 @@ const importImages = () => {
   const images = require.context('../../assets/skins', false, /\.(png|jpe?g|svg)$/);
   const imagePaths: string[] = images.keys().map(images) as string[];
 
-  // Ordenar las imágenes según el valor de x en "imagen x"
   imagePaths.sort((a, b) => {
     const indexA = parseInt(a.match(/\d+/)![0], 10);
     const indexB = parseInt(b.match(/\d+/)![0], 10);
@@ -25,13 +24,12 @@ const importImages = () => {
   export const Tienda = () => {
     const { imagePaths } = importImages();
     const [showPurchaseContainer, setShowPurchaseContainer] = useState(false);
-  const [selectedSkin, setSelectedSkin] = useState({
+    const [selectedSkin, setSelectedSkin] = useState({
     characterId: 0,
     randomNumber: 0,
   });
 
   const handleSkinClick = (characterId: number) => {
-    console.log(characterId);
     const randomNumber = CHARACTER_PRICES[characterId];
     setSelectedSkin({ characterId, randomNumber });
     setShowPurchaseContainer(true);

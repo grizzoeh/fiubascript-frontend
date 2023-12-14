@@ -16,7 +16,7 @@ export const UserCharacters: React.FC<UserCharactersProps> = ({ onClose }) => {
         userInfo.id && updateCharacters(userInfo.id,characterId).then(updateCharacters => {
             setUserInfo({
                 ...userInfo,
-                currentCharacter: updateCharacters
+                currentCharacter: updateCharacters.currentCharacter
               })
           });
         onClose();

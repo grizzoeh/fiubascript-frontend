@@ -47,9 +47,9 @@ export const Login = () => {
                 setLoading(false);
             }
         } catch (error) {
-        console.error(error);
-        alert('Wrong password.');
-        
+            console.error(error);
+            alert('Wrong password.');
+            setLoading(false);
         }
     }
 

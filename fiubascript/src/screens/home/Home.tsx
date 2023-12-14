@@ -63,11 +63,14 @@ export const Home = () => {
     return(
         <BackgroundContainer>
         <Navbar hasBackButton={false}/>
-        <div className="centered-content">
-        <div className="button-row">
-        <HomeButton title="Jugar" imageSrc={Jugar}  onClick={handleButtonJugarClick}></HomeButton>
-        <HomeButton title="Tienda" imageSrc={Tienda} onClick={handleButtonTiendaClick}></HomeButton>
+        <div className="centered-image">
+          <img src={triviaTitle} alt="TrivIA Title" />
         </div>
+        <div className="centered-content">
+          <div className="button-row">
+            <HomeButton title="Jugar" imageSrc={Jugar}  onClick={handleButtonJugarClick}></HomeButton>
+            <HomeButton title="Tienda" imageSrc={Tienda} onClick={handleButtonTiendaClick}></HomeButton>
+          </div>
         </div>
         <Modal show={showPopup} onHide={handlePopupClose} animation={true} centered size='lg'>
         <Modal.Header closeButton className='bg-primary-light text-white border-0 justify-content-center'>

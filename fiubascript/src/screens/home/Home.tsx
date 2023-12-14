@@ -50,7 +50,7 @@ export const Home = () => {
     
       const handlePopupClose = () => {
         userInfo.id &&  addCoins(userInfo.id, randomCoinNumber).then(updatedCoins => {
-          setUserInfo({
+          updatedCoins != null && setUserInfo({
             ...userInfo,
             coins: updatedCoins
           })});

@@ -16,9 +16,9 @@ export const CHARACTER_PRICES: Record<number, number> = {
 }
 
 export const POWERUP_PRICES = {
-  addTime: 50,
-  deleteOptions: 75,
-  changeQuestion: 100,
+  addTime: 5,
+  deleteOptions: 10,
+  changeQuestion: 15,
 }
 
-export const CORRECT_ANSWER_PRICE = 5
+export const CORRECT_ANSWER_PRICE = 20

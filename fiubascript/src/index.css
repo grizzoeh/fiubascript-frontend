@@ -5,4 +5,18 @@
   --primary-lighter: #C8E9F0;
   --success: #46A824;
   --error: #A61A1A;
+  --transparent-background: #C8E9F033;
+}
+
+.text-primary-lighter {
+  color: var(--primary-lighter);
+}
+
+.bg-primary-lighter {
+  background-color: var(--primary-lighter);
+}
+
+
+.bg-primary-light {
+  background-color: var(--primary-light);
 }

@@ -1,0 +1,31 @@
+.user-image{
+    position: relative;
+    top: 5px;
+    right: 0;
+    margin: 10px;
+    width: 70px;
+}
+
+  .user-logo-container {
+    display: inline-block;
+    cursor: pointer;
+  }
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+  }
+  
+  .dropdown-menu div {
+    cursor: pointer;
+    padding: 5px;
+  }
+  
+  .dropdown-menu div:hover {
+    background-color: #f2f2f2;
+  }

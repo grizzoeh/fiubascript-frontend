@@ -1,0 +1,31 @@
+.gameHeader-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gameHeader-logo{
+  height: 3rem;
+}
+
+.gameHeader-arrow{
+  height: 3rem;
+  margin-right: 1rem;
+  padding: 0.7rem;
+  cursor: pointer;
+  border-radius: 0.7rem;
+}
+.gameHeader-arrow:hover{
+  background-color: var(--transparent-background);
+}
+
+.gameHeader-coin{
+  height: 1.5rem;
+  margin-right: 1rem;
+}
+
+.gameHeader-coin-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,26 @@
+.avatar-game-container{
+  position: absolute;
+  bottom: 45%;
+  left: 1rem;
+}
+
+.avatar-home-container{
+  position: absolute;
+  bottom: 5%;
+  left: 1rem;
+}
+
+.avatar-text{
+  background-color: var(--transparent-background);
+  border-radius: 1rem;
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  margin-left: 8vw;
+}
+
+.avatar-image{
+  width: 14vw;
+}

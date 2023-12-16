@@ -1,6 +1,6 @@
 export const CHARACTER_PRICES: Record<number, number> = {
   0: 0,
-  1: 10,
+  1: 100,
   2: 275,
   3: 350,
   4: 375,

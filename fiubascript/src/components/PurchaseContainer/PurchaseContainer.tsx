@@ -24,24 +24,24 @@ export const PurchaseContainer = ({ randomNumber, imageSrc, onClose, characterId
   }, [userInfo.coins, randomNumber]);
 
   const handleAceptarCompra = () => {
-      userInfo.id && buyCharacter(characterId, randomNumber,userInfo.id).then(updatedCoins => {
-        setUserInfo({
-          ...userInfo,
-          coins: updatedCoins,
-        })
-      });
+    userInfo.id && buyCharacter(characterId, randomNumber,userInfo.id).then(updatedCoins => {
+      setUserInfo({
+        ...userInfo,
+        coins: updatedCoins,
+      })
       userInfo.id && updateCharacters(userInfo.id,characterId).then(updateCharacters => {
         setUserInfo({
-            ...userInfo,
-            currentCharacter: updateCharacters,
-            characters: userInfo.characters !== null
-            ? userInfo.characters.concat(updateCharacters)
-            : [updateCharacters] ,
-          })
+          ...userInfo,
+          currentCharacter: updateCharacters,
+          characters: userInfo.characters !== null
+          ? userInfo.characters.concat(updateCharacters)
+          : [updateCharacters] ,
+        })
+        onClose();
       });
-      onClose();
-        
+    });
   }
+
   return (
     <div>
         <button className="close-button" onClick={onClose}>

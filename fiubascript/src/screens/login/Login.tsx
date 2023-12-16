@@ -10,10 +10,8 @@ export const Login = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { userInfo, setUserInfo } = useUser();
+    const { setUserInfo } = useUser();
     const [loading , setLoading] = useState(false);
-
-    // const history = useHistory();
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         setLoading(true);

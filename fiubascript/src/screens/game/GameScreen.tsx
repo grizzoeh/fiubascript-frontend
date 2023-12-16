@@ -26,6 +26,7 @@ type IAQuestions = {
 
 export const GameScreen = () => {
   const navigate = useNavigate();
+  const {userInfo, setUserInfo} = useUser()
   const [questions, setQuestions] = useState<IAQuestions[] | undefined>();
   const [questionIndex, setquestionIndex] = useState(0)
   const [selectedAnswer, setselectedAnswer] = useState('')
@@ -38,7 +39,6 @@ export const GameScreen = () => {
   const [gameOver, setgameOver] = useState(false)
   const [leaveModal, setleaveModal] = useState(false)
   const [correctAnswersCounter, setcorrectAnswersCounter] = useState(0)
-  const {userInfo, setUserInfo} = useUser()
 
   useEffect(() => {
     getQuestionsFromIA().then((aiQuestions: Array<IAQuestions>) => {
@@ -102,9 +102,7 @@ export const GameScreen = () => {
   const onFinishShowResultTime = () => {
     cleanGameScreen()
     setquestionIndex(prevIndex => prevIndex < 9 ? prevIndex + 1 : prevIndex);
-    // if(questionIndex === 0) {
-    //   setgameOver(true)
-    // }
+    
     if(questionIndex === 9) {
       userInfo.id && addCoins(userInfo.id, CORRECT_ANSWER_PRICE * correctAnswersCounter).then(updatedCoins => {
         updatedCoins != null && setUserInfo({
@@ -155,6 +153,7 @@ export const GameScreen = () => {
       }
     }
   }
+
   const onChangeQuestion = () => {
     userInfo.id && reduceCoins(userInfo.id, POWERUP_PRICES.changeQuestion).then(updatedCoins => {
       updatedCoins != null && setUserInfo({
@@ -164,11 +163,16 @@ export const GameScreen = () => {
     });
     cleanGameScreen()
     setpowerupUsed(true)
-    setgameOver(true)
-    if(questions){
+    console.log('Index: ', questionIndex)
+    console.log('Length: ', questions && questions.length)
+    console.log('Count: ', questions && ((9 - questionIndex) < ((questions.length - 1) - questionIndex)))
+
+    if(questions && ((9 - questionIndex) < ((questions.length - 1) - questionIndex))){
       const questionsAux = questions
       questionsAux.splice(questionIndex, 1)
       setQuestions([...questionsAux])
+    }else{
+      alert('No hay más preguntas para cambiar en esta version de prueba!')
     }
   }
 

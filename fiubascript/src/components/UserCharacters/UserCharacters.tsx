@@ -13,13 +13,14 @@ export const UserCharacters: React.FC<UserCharactersProps> = ({ onClose }) => {
     const { userInfo,setUserInfo } = useUser();
 
     const handleSkinClick = (characterId: number) => {
-        userInfo.id && updateCharacters(userInfo.id,characterId).then(updateCharacters => {
-            setUserInfo({
-                ...userInfo,
-                currentCharacter: updateCharacters
-              })
-          });
+      userInfo.id && updateCharacters(userInfo.id,characterId)
+      .then(updateCharacters => {
+        setUserInfo({
+          ...userInfo,
+          currentCharacter: updateCharacters
+        })
         onClose();
+      });  
     };
 
   if (!userInfo || !userInfo.characters || userInfo.characters.length === 0) {
@@ -29,7 +30,7 @@ export const UserCharacters: React.FC<UserCharactersProps> = ({ onClose }) => {
           <img src={Cruz} alt="close" className="close-button-profile" />
         </button>
         <div className="container-block">
-          <p>Aún no has comprado ningún avatar.</p>
+          <p style={{color: 'white'}}>Aún no has comprado ningún avatar</p>
         </div>
       </div>
     );
